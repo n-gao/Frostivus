@@ -1,4 +1,5 @@
-require("unit")
+require("unit");
+require("giftquest");
 
 Greevil = class({
     id = 0,
@@ -35,7 +36,7 @@ end
 
 function Greevil:DropGift()
     print("[Greevil] "..self:GetId().." is dropping a gift.");
-    --TOOD
+    GiftQuest.DropGift(self:GetDropPosition());
 end
 
 function Greevil:GetWaypoint()
@@ -56,6 +57,13 @@ end
 
 function Greevil:DistanceToWaypoint()
     return (self:GetWaypoint():GetAbsOrigin() - self:GetNpc():GetAbsOrigin()):Length2D();
+end
+
+function Greevil:GetDropPosition()
+    if self.npc:IsNull() then
+        return self:GetWaypoint():GetAbsOrigin();
+    end
+    return self:GetNpc():GetAbsOrigin();
 end
 
 function Greevil:SetNextWaypoint()

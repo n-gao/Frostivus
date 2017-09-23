@@ -5,7 +5,7 @@ Player = class({
     hero = nil,
     playerEntity = nil,
     disconnected = false,
-    fullfilledQuests = {}
+    fullfilledQuests = {},
 
     constructor = function(self, ent, id)
         self:SetPlayerEntity(ent);
@@ -34,7 +34,7 @@ end
 function Player:GetPoints()
     local result = 0;
     for _, quest in pairs(fullfilledQuests) do
-        result += quest:GetPoints();
+        result = result + quest:GetPoints();
     end
     return result;
 end

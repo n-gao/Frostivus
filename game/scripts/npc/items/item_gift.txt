@@ -1,0 +1,17 @@
+"item_gift"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"							"item_lua"
+    "AbilityTextureName" 				"alchemist_goblins_greed"
+    "AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+    "Model"								"models/props_gameplay/aegis.mdl"
+    "ScriptFile"                   		"items/item_gift.lua"
+
+    "ItemDeclarations"					"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    "ItemQuality"						"epic"
+    "ItemDroppable" 					"0"
+    "ItemKillable"						"1"
+    "ItemPurchasable"					"0"
+    "ItemSellable"						"0"
+}
