@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "outDir": "./custom_game",
+        "watch": true
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "dota_enums.d.ts",
+        "dota.d.ts",
+        "dota_panels.d.ts"
+    ]
+}
