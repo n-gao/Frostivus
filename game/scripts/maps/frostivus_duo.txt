@@ -1,0 +1,7 @@
+"frostivus_duo"
+{
+    "waypoints"
+    {
+        
+    }
+}

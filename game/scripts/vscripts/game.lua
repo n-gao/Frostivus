@@ -8,6 +8,8 @@ Game = class({
     _gameState = GAMESTATE_PREPARATION,
     _gameTimer = nil,
     players = {},
+    greevils = {},
+    mapData = nil,
     roshan = nil,
 
     constructor = function(self)
@@ -17,6 +19,8 @@ Game = class({
         ListenToGameEvent("player_connect_full", Dynamic_Wrap(Game, "OnPlayerConnectFull"), self);
         ListenToGameEvent('player_disconnect', Dynamic_Wrap(Game, 'OnPlayerDisconnect'), self)
         ListenToGameEvent("npc_spawned", Dynamic_Wrap(Game, "OnNpcSpawned"), self);
+        ListenToGameEvent("entity_killed", Dynamic_Wrap(Game, "OnNpcKilled"), self);
+        mapData = LoadKeyValues("scripts/maps/"..GetMapName()..".txt");
         instance = self;
     end
 }, {
@@ -49,10 +53,35 @@ function Game:OnThinkEnd()
 end
 
 function Game:SetRoshan(roshan)
-    if (roshan == nil) then
+    if roshan == nil or type(roshan) == "table" then
         error("Roshan can not be set to null.");
     end
     self.roshan = roshan;
+end
+
+function Game:GetRoshan()
+    return self.roshan;
+end
+
+function Game:AddGreevil(greevil)
+    if greevil == nil or type(greevil) == "table" then
+        error("The given value must be an instance of Greevil.");
+    end
+    table.insert(self.greevils, greevil:GetId(), greevil);
+end
+
+function Game:GetGreevils()
+    local result = {};
+    for key, greevil in pairs(self.greevils) do
+        if greevil:IsAlive() then
+            table.insert(result, greevil);
+        end
+    end
+    return result;
+end
+
+function Game:GetWaypoints()
+    return self.mapData.waypoints;
 end
 
 function Game:OnPlayerConnectFull(keys)
@@ -87,6 +116,17 @@ function Game:OnNpcSpawned(keys)
     end
 end
 
+function Game:OnNpcKilled(keys)
+    local victim = EntIndexToHScript(keys.entindex_killed);
+    local murderer = EntIndexToHScript(keys.entindex_attacker);
+    if type(victim.unit) == "table" and type(victim.unit.OnDied) == "function" then
+        victim.unit:OnDied(murderer);
+    end
+    if type(murderer.unit) == "table" and type(murderer.unit.OnKilled) == "function" then
+        murderer.unit:OnKilled(victim);
+    end
+end
+
 function Game:GetPlayer(playerId)
     return self.players[playerId] or nil;
 end
@@ -105,4 +145,4 @@ function Game:GetGameState()
     return self._gameState;
 end
 
-Game.instance = Game();
+Game();

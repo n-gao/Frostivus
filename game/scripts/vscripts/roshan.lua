@@ -1,16 +1,12 @@
-Roshan = class({
-    unit = nil,
-    thinker = nil,
+require("Unit")
 
+Roshan = class({
     constructor = function(self, npc)
-        unit = npc;
-        thinker = Timers:CreateTimer(0, function()
-            self:OnThink();
-        end);
+        Unit.constructor(self, npc);
+        
         unit:AddNewModifier(nil, nil, "modifier_invulnerable", {});
-        Game.instance:SetRoshan(self);
     end
-});
+}, {}, Unit);
 
 function Roshan:OnThink()
     print("Roshan thinking");
@@ -18,5 +14,5 @@ function Roshan:OnThink()
 end
 
 function Spawn(entity)
-    Roshan(thisEntity)
+    Game.instance:SetRoshan(Roshan(thisEntity));
 end
