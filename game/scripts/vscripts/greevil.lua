@@ -18,10 +18,12 @@ Greevil = Greevil or class({
 }, Unit);
 
 function Greevil:OnThink()
-    print("Greevil thinking.");
     if not self:IsAlive() then
         print("[Greevil] Greevil "..self:GetId().." died.");
         return nil;
+    end
+    if self:GetNpc():IsIdle() then
+        self:MoveToWaypoint();
     end
     if self:DistanceToWaypoint() < 50 then
         print("[Greevil] "..self:GetId().." is moving to next waypoint.");
@@ -41,10 +43,6 @@ end
 
 function Greevil:GetWaypoint()
     return self.waypoint;
-end
-
-function Greevil:GetNpc()
-    return self.npc;
 end
 
 function Greevil:GetId()
@@ -71,15 +69,12 @@ function Greevil:SetNextWaypoint()
     if waypoints == nil or type(waypoints) ~= "table" or waypoints == 0 then
         error("Game does not have any waypoints");
     end
-    math.randomseed(os.time());
-    local skip = math.random(0, #waypoints - 1);
-    local ind = 0;
-    for _,waypoint in pairs(waypoints) do
-        if ind == skip then
-            self.waypoint = waypoint;
-            break;
-        end
-        ind = ind + 1;
-    end
+    self.waypoint = waypoints[math.random(#waypoints)];
+    Timers:CreateTimer(0, function ()
+        self:MoveToWaypoint();
+    end)
+end
+
+function Greevil:MoveToWaypoint()
     self:GetNpc():MoveToPosition(self:GetWaypoint():GetAbsOrigin());
 end

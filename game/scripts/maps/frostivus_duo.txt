@@ -1,7 +1,28 @@
 "frostivus_duo"
 {
+    "max_greevils"  "20"
     "waypoints"
     {
-        
+        "1"         "path_inner_n"
+        "2"         "path_inner_n_e"
+        "3"         "path_inner_e"
+        "4"         "path_inner_s_e"
+        "5"         "path_inner_s_w"
+        "6"         "path_inner_w"
+        "7"         "path_inner_n_w"
+        "8"         "path_middle_n"
+        "9"         "path_middle_n_e"
+        "10"         "path_middle_e"
+        "11"         "path_middle_s_e"
+        "12"         "path_middle_s_w"
+        "13"         "path_middle_w"
+        "14"         "path_middle_n_w"
+        "15"         "path_outer_n"
+        "16"         "path_outer_n_e"
+        "17"         "path_outer_e"
+        "18"         "path_outer_s_e"
+        "19"         "path_outer_s_w"
+        "20"         "path_outer_w"
+        "21"         "path_outer_n_w"
     }
 }

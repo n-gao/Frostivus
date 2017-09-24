@@ -11,5 +11,6 @@ Unit = Unit or class({
     end,
     OnDied = function(self, murderer) end,
     OnKilled = function(self, victim) end,
-    OnThink = function(self) end
+    OnThink = function(self) end,
+    GetNpc = function(self) return self.npc end
 });

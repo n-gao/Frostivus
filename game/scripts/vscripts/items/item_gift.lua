@@ -37,18 +37,16 @@ function modifier_item_gift_lua:RemoveOnDeath()
     return false;
 end
 
-function modifier_item_gift_lua:OnDeath()
+function modifier_item_gift_lua:DeclareFunctions()
     return {
         MODIFIER_EVENT_ON_DEATH
     };
 end
 
 function modifier_item_gift_lua:OnDeath(keys)
-    print("test");
     if keys.unit == self:GetParent() then
-    print("test2")
         Timers:CreateTimer(0, function ()
-            GiftQuest.DropGifts(self.owner:GetAbsOrigin(), self:GetStackCount());
+            GiftQuest.DropGifts(self:GetCaster():GetAbsOrigin(), self:GetStackCount());
             self:Destroy();
         end)
     end

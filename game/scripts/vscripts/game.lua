@@ -9,6 +9,7 @@ Game = Game or class({
     _gameTimer = nil,
     players = {},
     greevils = {},
+    waypoints = {},
     mapData = nil,
     roshan = nil,
 
@@ -22,9 +23,10 @@ Game = Game or class({
         ListenToGameEvent("npc_spawned", Dynamic_Wrap(Game, "OnNpcSpawned"), self);
         ListenToGameEvent("entity_killed", Dynamic_Wrap(Game, "OnNpcKilled"), self);
 
-        mapData = LoadKeyValues("scripts/maps/"..GetMapName()..".txt");
+        self:LoadMapData();
 
         Timers:CreateTimer(FrameTime(), function()
+            GameRules:SetUseUniversalShopMode(true);
             GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(Game, "ExecuteOrderFilter"), self);
             GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(Game, "ItemAddedFilter"), self)
         end);
@@ -33,7 +35,26 @@ Game = Game or class({
     _instance = nil,
 });
 
+function Game:LoadMapData()
+    self.mapData = LoadKeyValues("scripts/maps/"..GetMapName()..".txt");
+    Timers:CreateTimer(FrameTime(), function ()
+        local names = self:GetWaypointNames();
+        for ind, name in pairs(names) do
+            local entity = Entities:FindByName(nil, name);
+            if entity then
+                table.insert(self.waypoints, entity);
+                print("[Game] found waypoint "..name);
+            else
+                print("[Game] could not find waypoint "..name);
+            end
+        end
+    end);
+end
+
 function Game:OnThink()
+    if math.random() < 0.05 and #self:GetGreevils() < self:GetMaxGreevils() then
+        CreateUnitByName("frostivus_greevil", self:GetRoshan():GetNpc():GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS);
+    end
     if self._gameState == GAMESTATE_PREPARATION then
         self:OnThinkPreparation();
     end
@@ -86,7 +107,15 @@ function Game:GetGreevils()
     return result;
 end
 
+function Game:GetMaxGreevils()
+    return self.mapData.max_greevils;
+end
+
 function Game:GetWaypoints()
+    return self.waypoints;
+end
+
+function Game:GetWaypointNames()
     return self.mapData.waypoints;
 end
 

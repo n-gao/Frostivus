@@ -2,9 +2,9 @@
 {
     "MaxPlayers"    "10"
     "TeamCount"     "5"
-    "maps"          "desert_duo"
+    "maps"          "frostivus_duo"
     "IsPlayable"     "1"
-    "desert_duo"
+    "frostivus_duo"
     {
         "MaxPlayers"    "10"
         "TeamCount"     "5"
