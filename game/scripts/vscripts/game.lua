@@ -4,7 +4,7 @@ GAMESTATE_PREPARATION = 0;
 GAMESTATE_RUNNING = 1;
 GAMESTATE_END = 2;
 
-Game = class({
+Game = Game or class({
     _gameState = GAMESTATE_PREPARATION,
     _gameTimer = nil,
     players = {},
@@ -16,15 +16,21 @@ Game = class({
         self._gameTimer = Timers:CreateTimer(0, function()
             return self:OnThink();
         end);
+
         ListenToGameEvent("player_connect_full", Dynamic_Wrap(Game, "OnPlayerConnectFull"), self);
         ListenToGameEvent('player_disconnect', Dynamic_Wrap(Game, 'OnPlayerDisconnect'), self)
         ListenToGameEvent("npc_spawned", Dynamic_Wrap(Game, "OnNpcSpawned"), self);
         ListenToGameEvent("entity_killed", Dynamic_Wrap(Game, "OnNpcKilled"), self);
+
         mapData = LoadKeyValues("scripts/maps/"..GetMapName()..".txt");
-        instance = self;
+
+        Timers:CreateTimer(FrameTime(), function()
+            GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(Game, "ExecuteOrderFilter"), self);
+            GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(Game, "ItemAddedFilter"), self)
+        end);
     end
 }, {
-    instance = nil
+    _instance = nil,
 });
 
 function Game:OnThink()
@@ -53,8 +59,8 @@ function Game:OnThinkEnd()
 end
 
 function Game:SetRoshan(roshan)
-    if roshan == nil or type(roshan) == "table" then
-        error("Roshan can not be set to null.");
+    if not instanceof(roshan, Roshan) then
+        error("The given value must be an instance of Roshan.");
     end
     self.roshan = roshan;
 end
@@ -64,7 +70,7 @@ function Game:GetRoshan()
 end
 
 function Game:AddGreevil(greevil)
-    if greevil == nil or type(greevil) == "table" then
+    if not instanceof(greevil, Greevil) then
         error("The given value must be an instance of Greevil.");
     end
     table.insert(self.greevils, greevil:GetId(), greevil);
@@ -119,12 +125,38 @@ end
 function Game:OnNpcKilled(keys)
     local victim = EntIndexToHScript(keys.entindex_killed);
     local murderer = EntIndexToHScript(keys.entindex_attacker);
-    if type(victim.unit) == "table" and type(victim.unit.OnDied) == "function" then
+    if instanceof(victim.unit, Unit) then
         victim.unit:OnDied(murderer);
     end
-    if type(murderer.unit) == "table" and type(murderer.unit.OnKilled) == "function" then
+    if instanceof(murderer.unit, Unit) then
         murderer.unit:OnKilled(victim);
     end
+end
+
+function Game:ExecuteOrderFilter(keys)
+    -- DeepPrintTable(keys);
+    return true;
+end
+
+function Game:ItemAddedFilter(keys)
+    local unit = EntIndexToHScript(keys.inventory_parent_entindex_const);
+    local item = EntIndexToHScript(keys.item_entindex_const);
+	local itemName = 0;
+	if item:GetName() then
+		itemName = item:GetName();
+	end
+    if itemName == "item_gift" then
+        if unit:IsRealHero() then
+            -- Apply gift modifier
+            unit:AddNewModifier(unit, item, "modifier_item_gift_lua", {});
+        else
+            -- Create a new gift
+            GiftQuest.DropGift(unit:GetAbsOrigin());
+        end
+        -- Destroy the item
+        return false;
+    end
+    return true;
 end
 
 function Game:GetPlayer(playerId)
@@ -145,4 +177,11 @@ function Game:GetGameState()
     return self._gameState;
 end
 
-Game();
+function Game.GetInstance()
+    if Game._instance == nil then
+        Game._instance = Game();
+    end
+    return Game._instance;
+end
+
+Game.GetInstance();

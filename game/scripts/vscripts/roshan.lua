@@ -1,18 +1,15 @@
-require("Unit")
+require("Unit");
 
-Roshan = class({
+LinkLuaModifier("modifier_roshan_invulnerable_lua", "abilities/modifier_roshan_invulnerable_lua.lua", LUA_MODIFIER_MOTION_NONE);
+
+Roshan = Roshan or class({
     constructor = function(self, npc)
         Unit.constructor(self, npc);
         
-        unit:AddNewModifier(nil, nil, "modifier_invulnerable", {});
+        self.npc:AddNewModifier(nil, nil, "modifier_roshan_invulnerable_lua", {});
     end
 }, {}, Unit);
 
 function Roshan:OnThink()
-    print("Roshan thinking");
     return 0.5;
-end
-
-function Spawn(entity)
-    Game.instance:SetRoshan(Roshan(thisEntity));
 end

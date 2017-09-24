@@ -1,7 +1,7 @@
 require("unit");
 require("giftquest");
 
-Greevil = class({
+Greevil = Greevil or class({
     id = 0,
     waypoint = nil,
 
@@ -67,7 +67,7 @@ function Greevil:GetDropPosition()
 end
 
 function Greevil:SetNextWaypoint()
-    local waypoints = Game.instance:GetWaypoints();
+    local waypoints = Game.GetInstance():GetWaypoints();
     if waypoints == nil or type(waypoints) ~= "table" or waypoints == 0 then
         error("Game does not have any waypoints");
     end
@@ -82,8 +82,4 @@ function Greevil:SetNextWaypoint()
         ind = ind + 1;
     end
     self:GetNpc():MoveToPosition(self:GetWaypoint():GetAbsOrigin());
-end
-
-function Spawn(entity)
-    Game.instance:AddGreevil(Greevil(thisEntity));
 end

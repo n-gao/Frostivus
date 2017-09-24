@@ -7,8 +7,11 @@ function item_gift:GetAbilityTextureName()
    return "alchemist_goblins_greed";
 end
 
+function item_gift:OnSpellStart()
+    print("test");
+end
 
-modifier_item_gift_lua = class({});
+modifier_item_gift_lua = modifier_item_gift_lua or class({});
 function modifier_item_gift_lua:OnCreated()
     self.owner = self:GetAbility():GetCaster();
     self:SetStackCount(1);
@@ -31,9 +34,22 @@ function modifier_item_gift_lua:GetTexture()
 end
 
 function modifier_item_gift_lua:RemoveOnDeath()
-    return true;
+    return false;
 end
 
-function modifier_item_gift_lua:OnDestroy()
-    GiftQuest.DropGifts(self.owner:GetAbsOrigin(), self:GetStackCount());
+function modifier_item_gift_lua:OnDeath()
+    return {
+        MODIFIER_EVENT_ON_DEATH
+    };
+end
+
+function modifier_item_gift_lua:OnDeath(keys)
+    print("test");
+    if keys.unit == self:GetParent() then
+    print("test2")
+        Timers:CreateTimer(0, function ()
+            GiftQuest.DropGifts(self.owner:GetAbsOrigin(), self:GetStackCount());
+            self:Destroy();
+        end)
+    end
 end

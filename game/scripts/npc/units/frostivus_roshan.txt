@@ -12,7 +12,7 @@
 	"Level"						"1"
 	"ModelScale" 				"1"
     "IsAncient"                 "1"
-    "Vscripts"                  "roshan.lua"          
+    "Vscripts"                  "triggers/roshan_spawn.lua"          
 
 	// Abilities
 	//----------------------------------------------------------------
@@ -70,7 +70,7 @@
 
 	// Team
 	//----------------------------------------------------------------
-	"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+	"TeamName"					"DOTA_TEAM_NOTEAM"						// Team name.
     "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_HERO"
     "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_HERO"
     "UnitRelationShipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"

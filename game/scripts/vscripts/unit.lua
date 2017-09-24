@@ -1,4 +1,4 @@
-Unit = class({
+Unit = Unit or class({
     npc = nil,
     timer = nil,
 

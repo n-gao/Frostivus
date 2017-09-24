@@ -12,7 +12,7 @@
 	"Level"						"1"
 	"ModelScale" 				"1"
     "IsAncient"                 "1"
-    "Vscripts"                  "greevil.lua"          
+    "Vscripts"                  "triggers/greevil_spawn.lua"          
 
 	// Abilities
 	//----------------------------------------------------------------

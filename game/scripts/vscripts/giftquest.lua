@@ -1,16 +1,16 @@
 require("quest");
 
-GiftQuest = class({
+GiftQuest = GiftQuest or class({
     name = "gift",
     giftsGiven = 0,
     constructor = function(self, count)
-        giftsGiven = count
+        self.giftsGiven = count
     end
 }, {
 
 }, Quest);
 
-function GiftQuest:GetPoints() 
+function GiftQuest:GetPoints()
     return self.giftsGiven + math.floor(self.giftsGiven/3);
 end
 
@@ -18,11 +18,11 @@ function GiftQuest.DropGift(position)
     if position == nil then
         error("Position must not be null.");
     end
-    print("[Gift] Dropping a gift at "..position..".");
+    print("[Gift] Dropping a gift at "..position:__tostring()..".");
     local gift = CreateItem("item_gift", nil, nil);
-    gift:SetPurchaser(0);
+    gift:SetPurchaseTime(0);
     local drop = CreateItemOnPositionSync(position, gift);
-    local offset = Vector(math.random(0, 50), 0, math.random(0, 50));
+    local offset = Vector(math.random(-200, 200), math.random(-200, 200), 0);
     gift:LaunchLoot(false, 300, 0.75, position + offset);
 end
 
@@ -33,4 +33,13 @@ function GiftQuest.DropGifts(position, amount)
     for i = 0, amount do
         GiftQuest.DropGift(position);
     end
+end
+
+function GiftQuest.GiveGifts(player)
+    local count = player:GetGiftCount();
+    if count == 0 then
+        return;
+    end
+    player:RemoveGifts();
+    player:FullfillQuest(GiftQuest(count));
 end
