@@ -1,7 +1,6 @@
 Player = class({
     playerId = 0,
     userId = 0,
-    team = 0,
     hero = nil,
     playerEntity = nil,
     disconnected = false,

@@ -1,15 +1,18 @@
+require("quest");
+
 GiftQuest = class({
     name = "gift",
     giftsGiven = 0,
-    GetPoints = function(self)
-        return giftsGiven + math.floor(giftsGiven/3);
-    end,
     constructor = function(self, count)
         giftsGiven = count
     end
 }, {
 
 }, Quest);
+
+function GiftQuest:GetPoints() 
+    return self.giftsGiven + math.floor(self.giftsGiven/3);
+end
 
 function GiftQuest.DropGift(position)
     if position == nil then
