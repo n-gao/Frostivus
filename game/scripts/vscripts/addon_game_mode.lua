@@ -11,6 +11,7 @@ function Precache( context )
 			PrecacheResource( "particle", "*.vpcf", context )
 			PrecacheResource( "particle_folder", "particles/folder", context )
 	]]
+    PrecacheUnitByNameSync("frostivus_greevil", context);
 end
 
 -- Create the game mode when we activate

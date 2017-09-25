@@ -1,0 +1,11 @@
+.SpeechbubbleRoot {
+    background-color: black;
+}
+
+#SpeechbubbleText {
+    color: white;
+    font-size: 32px;
+    margin: 4px 8px 4px 8px;
+    vertical-align: middle;
+    horizontal-align: center;
+}

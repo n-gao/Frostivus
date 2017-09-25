@@ -8,6 +8,9 @@ Unit = Unit or class({
         self.timer = Timers:CreateTimer(0, function ()
             return self:OnThink();
         end);
+        Timers:CreateTimer(FrameTime(), function ()
+            self:GetNpc():StartGesture(ACT_DOTA_SPAWN);
+        end);
     end,
     OnDied = function(self, murderer) end,
     OnKilled = function(self, victim) end,

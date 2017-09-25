@@ -5,7 +5,7 @@
 {
 	// General
 	//----------------------------------------------------------------
-	"Model"						"models/creeps/roshan/roshan.vmdl"	// Model.
+	"Model"						"models/courier/gold_mega_greevil/gold_mega_greevil.vmdl"	// Model.
 	"BaseClass"					"npc_dota_creature"
 	"SoundSet"					"Roshan"
 	"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -46,9 +46,9 @@
 
 	// Bounty
 	//----------------------------------------------------------------
-	"BountyXP"					"24"		// Experience earn.
-	"BountyGoldMin"				"21"		// Gold earned min.
-	"BountyGoldMax"				"29"		// Gold earned max.
+	"BountyXP"					"124"		// Experience earn.
+	"BountyGoldMin"				"51"		// Gold earned min.
+	"BountyGoldMax"				"59"		// Gold earned max.
 
 	// Movement
 	//----------------------------------------------------------------
@@ -58,7 +58,7 @@
 
 	// Status
 	//----------------------------------------------------------------
-	"StatusHealth"				"500"		// Base health.
+	"StatusHealth"				"300"		// Base health.
 	"StatusHealthRegen"			"10"		// Health regeneration rate.
 	"StatusMana"				"200"			// Base mana.
 	"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 

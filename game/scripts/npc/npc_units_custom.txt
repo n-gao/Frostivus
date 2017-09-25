@@ -7,7 +7,7 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/roshan/roshan.vmdl"	// Model.
+		"Model"						"models/courier/gold_mega_greevil/gold_mega_greevil.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Roshan"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"

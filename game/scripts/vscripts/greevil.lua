@@ -26,7 +26,7 @@ function Greevil:OnThink()
         self:MoveToWaypoint();
     end
     if self:DistanceToWaypoint() < 50 then
-        print("[Greevil] "..self:GetId().." is moving to next waypoint.");
+        -- print("[Greevil] "..self:GetId().." is moving to next waypoint.");
         self:SetNextWaypoint();
     end
     return 0.5;

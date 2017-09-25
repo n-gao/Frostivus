@@ -42,6 +42,8 @@ function GiftQuest.GiveGifts(player)
     end
     player:RemoveGifts();
     player:FullfillQuest(GiftQuest(count));
-    Game.GetInstance():GetRoshan():LookAt(player:GetHero());
-    Game.GetInstance():GetRoshan():StartHappyGesture();
+    local roshan = Game.GetInstance():GetRoshan();
+    roshan:LookAt(player:GetHero():GetAbsOrigin());
+    roshan:ThankPlayer(player);
+    roshan:StartHappyGesture();
 end

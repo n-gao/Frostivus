@@ -1,7 +1,12 @@
 {
     "compilerOptions": {
         "outDir": "./custom_game",
-        "watch": true
+        "watch": true,
+        "noImplicitAny" : true,
+        "noImplicitThis" : true,
+        "alwaysStrict" : true,
+        "strictNullChecks" : true,
+        "target": "es3"
     },
     "include": [
         "src/**/*"

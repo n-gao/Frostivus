@@ -1,0 +1,9 @@
+<root>
+    <styles>
+ 		<include src="file://{resources}/styles/dotastyles.css" />
+ 		<include src="file://{resources}/styles/custom_game/frostivus_speechbubble.css" />
+    </styles>
+    <Panel class="SpeechbubbleRoot">
+        <Label id="SpeechbubbleText"/>
+    </Panel>
+</root>

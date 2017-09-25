@@ -1,0 +1,14 @@
+<root>
+    <scripts>
+ 		<include src="file://{resources}/scripts/custom_game/speechbubble.js" />
+    </scripts>
+    <styles>
+ 		<include src="file://{resources}/styles/dotastyles.css" />
+        <include src="file://{resources}/styles/custom_game/frostivus_hud.css" />
+    </styles>
+    <Panel hittest="false" class="FrostivusHudRoot">
+        <Panel hittest="false" id="FrostivusSpeechBubbleRoot">
+             
+        </Panel>
+    </Panel>
+</root>
