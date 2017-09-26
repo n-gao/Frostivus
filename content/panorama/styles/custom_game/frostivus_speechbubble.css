@@ -1,5 +1,6 @@
 .SpeechbubbleRoot {
-    background-color: black;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #000e ), to( #333e ) );
+    border-radius: 8px;
 }
 
 #SpeechbubbleText {
