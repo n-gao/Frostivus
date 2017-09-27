@@ -33,7 +33,6 @@ function modifier_interruption_lua:OnCreated(kv)
         self:Destroy();
         return;
     end
-    print("test1");
     self.player = hero.player;
     self.cameraUnit = CreateUnitByName("frostivus_camera_helper", hero:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS);
     self.cameraUnit.player = self.player;
@@ -47,7 +46,7 @@ function modifier_interruption_lua:OnCreated(kv)
             return;
         end
         self.cameraUnit:MoveToPosition(roshan:GetAbsOrigin());
-        if (self.cameraUnit:GetAbsOrigin() - roshan:GetAbsOrigin()):Length2D() < 50 then
+        if (self.cameraUnit:GetAbsOrigin() - roshan:GetAbsOrigin()):Length2D() < 10 then
             PlayerResource:SetCameraTarget(self.player:GetPlayerId(), roshan);
             self.cameraUnit:Destroy();
             return;
