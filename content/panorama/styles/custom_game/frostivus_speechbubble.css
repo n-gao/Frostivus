@@ -1,12 +1,23 @@
 .SpeechbubbleRoot {
-	background-color: gradient( linear, 0% 100%, 0% 0%, from( #000e ), to( #333e ) );
-    border-radius: 8px;
+    flow-children: down;
 }
 
 #SpeechbubbleText {
     color: white;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #000000ff ), to( #333e ) );
+    border-radius: 8px;
     font-size: 32px;
-    margin: 4px 8px 4px 8px;
+    padding: 4px 8px 4px 8px;
     vertical-align: middle;
     horizontal-align: center;
+    white-space: nowrap;
+}
+
+.SpeechbubblePointer {
+    width: 50px;
+    margin-top: -2px;
+    horizontal-align: center;
+    border-style: solid;
+    border-width: 25px 25px 0 25px;
+    border-color: #000000ff transparent transparent transparent;
 }

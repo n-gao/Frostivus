@@ -1,0 +1,77 @@
+//=================================================================================	
+// Creature: Camera Helper
+//=================================================================================
+"frostivus_camera_helper"	
+{
+	// General
+	//----------------------------------------------------------------
+	"Model"						"models/development/invisiblebox.vmdl"	// Model.
+	"BaseClass"					"npc_dota_creature"
+	"SoundSet"					""
+	"GameSoundsFile"			""
+	"Level"						"1"
+	"ModelScale" 				"1"
+    "IsAncient"                 "1"
+    "Vscripts"                  "triggers/camera_helper_spawn.lua"          
+
+	// Abilities
+	//----------------------------------------------------------------
+	"Ability1"					""			// Ability 1
+	"Ability2"					""			// Ability 2
+	"Ability3"					""			// Ability 3
+	"Ability4"					""			// Ability 4
+
+	// Armor
+	//----------------------------------------------------------------
+	"ArmorPhysical"				"0"			// Physical protection.
+    "MagicalResistance"		    "0"		
+
+	// Attack
+	//----------------------------------------------------------------
+	"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+	"AttackDamageMin"			"10"		// Damage range min.
+	"AttackDamageMax"			"20"		// Damage range max.
+	"AttackRate"				"0.6"		// Speed of attack.
+	"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+	"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+	"AttackRange"				"250"		// Range within a target can be attacked.
+	"ProjectileModel"			"" // Particle system model for projectile.
+	"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+
+	// Bounds
+	//----------------------------------------------------------------
+    "BoundsHullName"            "DOTA_HULL_SIZE_SMALL"
+	"RingRadius"				"60"
+	"HealthBarOffset"			"100"
+
+	// Bounty
+	//----------------------------------------------------------------
+	"BountyXP"					"124"		// Experience earn.
+	"BountyGoldMin"				"51"		// Gold earned min.
+	"BountyGoldMax"				"59"		// Gold earned max.
+
+	// Movement
+	//----------------------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+	"MovementSpeed"				"1300"		// Speed.
+    "MovementTurnRate"          "1.0"		
+
+	// Status
+	//----------------------------------------------------------------
+	"StatusHealth"				"300"		// Base health.
+	"StatusHealthRegen"			"10"		// Health regeneration rate.
+	"StatusMana"				"200"			// Base mana.
+	"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
+	
+	// Vision
+	//----------------------------------------------------------------
+	"VisionDaytimeRange"		"0"		// Range of vision during day light.
+	"VisionNighttimeRange"		"0"		// Range of vision at night time.
+
+	// Team
+	//----------------------------------------------------------------
+	"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+    "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
+    "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
+    "UnitRelationShipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+}

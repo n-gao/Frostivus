@@ -29,8 +29,8 @@ function RefreshPosition(panel, gamePos) {
     if (panel == null) {
         return;
     }
-    var x = Game.WorldToScreenX(gamePos.x, gamePos.y, gamePos.z + 350);
-    var y = Game.WorldToScreenY(gamePos.x, gamePos.y, gamePos.z + 350);
+    var x = Game.WorldToScreenX(gamePos.x, gamePos.y, gamePos.z);
+    var y = Game.WorldToScreenY(gamePos.x, gamePos.y, gamePos.z);
     // x += panel.actuallayoutwidth/2;
     panel.style.marginLeft = "" + x + "px";
     panel.style.marginTop = "" + y + "px";
@@ -45,11 +45,11 @@ function RefreshPosition(panel, gamePos) {
     });
 }
 (function () {
-    $.Msg("test");
     GameEvents.Subscribe("show_speechbubble", ShowSpeechBubble);
     // ShowSpeechBubble({ 
-    //     position : {x : 0, y : 0, z : 760},
+    //     position : {x : 0, y : 0, z : 300},
     //     text : "this is a test 2",
-    //     duration : 3000
+    //     duration : 30000,
+    //     params : []
     // });
 })();

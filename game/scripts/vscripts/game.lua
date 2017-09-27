@@ -23,6 +23,8 @@ Game = Game or class({
         ListenToGameEvent("npc_spawned", Dynamic_Wrap(Game, "OnNpcSpawned"), self);
         ListenToGameEvent("entity_killed", Dynamic_Wrap(Game, "OnNpcKilled"), self);
 
+        LinkLuaModifier("modifier_interruption_lua", "abilities/modifier_interruption_lua.lua", LUA_MODIFIER_MOTION_NONE);
+
         self:LoadMapData();
 
         Timers:CreateTimer(FrameTime(), function()
@@ -54,6 +56,15 @@ end
 function Game:OnThink()
     if math.random() < 0.05 and #self:GetGreevils() < self:GetMaxGreevils() then
         CreateUnitByName("frostivus_greevil", self:GetRoshan():GetNpc():GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS);
+    end
+    if math.random() < 0.1 then
+        for _, player in pairs(self.players) do
+            if player:HasHero() and not player:GetHero():HasModifier("modifier_interruption_lua") then
+                player:GetHero():AddNewModifier(player:GetHero(), nil, "modifier_interruption_lua", {
+                    duration = 3
+                });
+            end
+        end
     end
     if self._gameState == GAMESTATE_PREPARATION then
         self:OnThinkPreparation();

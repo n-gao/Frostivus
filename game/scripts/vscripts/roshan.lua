@@ -48,9 +48,9 @@ function Roshan:ThankPlayer(player)
         position = {
             x = pos.x,
             y = pos.y,
-            z = pos.z
+            z = pos.z + 400
         },
-        text = "#1 #2.",
+        text = "#1 #2!",
         duration = 5,
         params = {
             [1] = "froivus_roshan_thank_you",

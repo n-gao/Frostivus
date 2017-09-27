@@ -41,6 +41,10 @@ function Player:GetPlayerId()
     return self.playerId;
 end
 
+function Player:HasHero()
+    return self.hero ~= nil;
+end
+
 function Player:GetTeamNumber()
     return PlayerResource:GetTeam(self:GetPlayerId());
 end
