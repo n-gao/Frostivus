@@ -1,8 +1,5 @@
 require("player");
-
-GAMESTATE_PREPARATION = 0;
-GAMESTATE_RUNNING = 1;
-GAMESTATE_END = 2;
+require("utils");
 
 Game = Game or class({
     _gameState = GAMESTATE_PREPARATION,
@@ -28,6 +25,8 @@ Game = Game or class({
         self:LoadMapData();
 
         Timers:CreateTimer(FrameTime(), function()
+            GameRules:SetPreGameTime(0);
+            GameRules:SetShowcaseTime(0);
             GameRules:SetUseUniversalShopMode(true);
             GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(Game, "ExecuteOrderFilter"), self);
             GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(Game, "ItemAddedFilter"), self)
@@ -54,25 +53,14 @@ function Game:LoadMapData()
 end
 
 function Game:OnThink()
-    if math.random() < 0.05 and #self:GetGreevils() < self:GetMaxGreevils() then
-        CreateUnitByName("frostivus_greevil", self:GetRoshan():GetNpc():GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS);
-    end
-    if math.random() < 0.1 then
-        for _, player in pairs(self.players) do
-            if player:HasHero() and not player:GetHero():HasModifier("modifier_interruption_lua") then
-                player:GetHero():AddNewModifier(player:GetHero(), nil, "modifier_interruption_lua", {
-                    duration = 3
-                });
-            end
-        end
-    end
-    if self._gameState == GAMESTATE_PREPARATION then
+    local state = GameRules:State_Get();
+    if state < DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         self:OnThinkPreparation();
     end
-    if self._gameState == GAMESTATE_RUNNING then
+    if state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         self:OnThinkRunning();
-    end 
-    if self._gameState == GAMESTATE_END then
+    end
+    if state > DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         self:OnThinkEnd();
     end
     return 0.5;
@@ -83,7 +71,9 @@ function Game:OnThinkPreparation()
 end
 
 function Game:OnThinkRunning()
-
+    if math.random() < 0.05 and #self:GetGreevils() < self:GetMaxGreevils() then
+        CreateUnitByName("frostivus_greevil", self:GetRoshan():GetNpc():GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS);
+    end
 end
 
 function Game:OnThinkEnd()
@@ -123,11 +113,11 @@ function Game:GetMaxGreevils()
 end
 
 function Game:GetWaypoints()
-    return self.waypoints;
+    return shallowcopy(self.waypoints);
 end
 
 function Game:GetWaypointNames()
-    return self.mapData.waypoints;
+    return shallowcopy(self.mapData.waypoints);
 end
 
 function Game:OnPlayerConnectFull(keys)
@@ -203,18 +193,8 @@ function Game:GetPlayer(playerId)
     return self.players[playerId] or nil;
 end
 
-function Game:SetGameState(newState)
-    if type(newState) ~= number then
-        error("GameState must be a number.");
-    end
-    if (newState < 0 or newState > 2) then
-        error("Invalid value for GameState.");
-    end
-    self._gameState = newState;
-end
-
-function Game:GetGameState()
-    return self._gameState;
+function Game:GetPlayers()
+    return shallowcopy(self.players);
 end
 
 function Game.GetInstance()

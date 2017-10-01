@@ -37,7 +37,7 @@ function modifier_interruption_lua:OnCreated(kv)
     self.cameraUnit = CreateUnitByName("frostivus_camera_helper", hero:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS);
     self.cameraUnit.player = self.player;
     PlayerResource:SetCameraTarget(self.player:GetPlayerId(), self.cameraUnit);
-    if kv.duration then
+    if kv.duration >= 0 then
         self:SetDuration(kv.duration, true);
     end
     local roshan = Game.GetInstance():GetRoshan():GetNpc();

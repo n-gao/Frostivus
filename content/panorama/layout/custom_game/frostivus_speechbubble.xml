@@ -4,7 +4,9 @@
  		<include src="file://{resources}/styles/custom_game/frostivus_speechbubble.css" />
     </styles>
     <Panel class="SpeechbubbleRoot">
-        <Label id="SpeechbubbleText"/>
-        <Panel class="SpeechbubblePointer"/>
+        <Panel id="Speechbubble">
+            <Label id="SpeechbubbleText"/>
+            <Panel class="SpeechbubblePointer"/>
+        </Panel>
     </Panel>
 </root>

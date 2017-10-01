@@ -4,7 +4,8 @@ GiftQuest = GiftQuest or class({
     name = "gift",
     giftsGiven = 0,
     constructor = function(self, count)
-        self.giftsGiven = count
+        Quest.constructor(self);
+        self.giftsGiven = count;
     end
 }, {
 
@@ -33,17 +34,4 @@ function GiftQuest.DropGifts(position, amount)
     for i = 0, amount do
         GiftQuest.DropGift(position);
     end
-end
-
-function GiftQuest.GiveGifts(player)
-    local count = player:GetGiftCount();
-    if count == 0 then
-        return;
-    end
-    player:RemoveGifts();
-    player:FullfillQuest(GiftQuest(count));
-    local roshan = Game.GetInstance():GetRoshan();
-    roshan:LookAt(player:GetHero():GetAbsOrigin());
-    roshan:ThankPlayer(player);
-    roshan:StartHappyGesture();
 end

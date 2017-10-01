@@ -1,10 +1,12 @@
 "use strict";
 
 interface SpeechBubble {
-    position : Vector,
+    position : [number, number, number],
     text : string,
     duration : number,
-    params : string[]
+    params : string[],
+    shout : boolean,
+    entIndex : number
 }
 
 function ShowSpeechBubble(data : SpeechBubble) {
@@ -13,12 +15,67 @@ function ShowSpeechBubble(data : SpeechBubble) {
     var bubble = $.CreatePanel("Panel", $("#FrostivusSpeechBubbleRoot"), "Speechbubble");
     bubble.BLoadLayout("file://{resources}/layout/custom_game/frostivus_speechbubble.xml", false, false);
     var label = bubble.FindChildInLayoutFile("SpeechbubbleText") as LabelPanel;
-    label.text = FormatText(data.text, data.params);
+    var text = FormatText(data.text, data.params);
+    if (data.shout) {
+        text = text.toUpperCase();
+    }
+    label.text = text;
     $.Schedule(data.duration, function() {
         bubble.RemoveAndDeleteChildren();
     });
-    RefreshPosition(bubble, data.position);
+    RefreshPosition(bubble, data);
+    if (data.shout) {
+        SimulateShout(bubble.FindChildInLayoutFile("Speechbubble"));
+    }
 }
+
+function SimulateShout(panel : Panel) {
+    if (panel == null) {
+        return;
+    }
+    var x = Math.round(Math.random() * 30) - 15;
+    var y = Math.round(Math.random() * 30) - 15;
+    panel.style.marginLeft = x + "px";
+    panel.style.marginTop = y + "px";
+    $.Schedule(0.05, function (){
+        SimulateShout(panel);
+    });
+}
+
+function RefreshPosition(panel : Panel, data : SpeechBubble) {
+    if (panel == null) {
+        return;
+    }
+    var x,y : number;
+    if (data.entIndex < 0) {
+        var gamePos = data.position;
+        x = Game.WorldToScreenX(gamePos[0], gamePos[1], gamePos[2]);
+        y = Game.WorldToScreenY(gamePos[0], gamePos[1], gamePos[2]);
+    } else {
+        var pos = Entities.GetAbsOrigin(data.entIndex);
+        var offset = data.position;
+        x = Game.WorldToScreenX(pos[0] + offset[0], pos[1] + offset[1], pos[2] + offset[2]);
+        y = Game.WorldToScreenY(pos[0] + offset[0], pos[1] + offset[1], pos[2] + offset[2]);
+    }
+    y -= panel.contentheight;
+    x -= panel.contentwidth * 0.5;
+    var width = Game.GetScreenWidth();
+    var height = Game.GetScreenHeight();
+    var aspectCorrection = (width/height) / (16/9);
+    x *= aspectCorrection;
+    y *= aspectCorrection;
+    panel.style.marginLeft = x + "px";
+    panel.style.marginTop = y + "px";
+    if (x == -1 && y == -1) {
+        panel.style.visibility = "collapse";
+    } else {
+        panel.style.visibility = "visible";
+    }
+    $.Schedule(0.01, function(){
+        RefreshPosition(panel, data);
+    });
+}
+
 
 function FormatText(format : string, params : string[]) {
     var result = format;
@@ -33,25 +90,6 @@ function FormatText(format : string, params : string[]) {
         i++;
     }
     return result;
-}
-
-function RefreshPosition(panel : Panel, gamePos : Vector) {
-    if (panel == null) {
-        return;
-    }
-    var x = Game.WorldToScreenX(gamePos.x, gamePos.y, gamePos.z);
-    var y = Game.WorldToScreenY(gamePos.x, gamePos.y, gamePos.z);
-    // x += panel.actuallayoutwidth/2;
-    panel.style.marginLeft = "" + x + "px";
-    panel.style.marginTop = "" + y + "px";
-    if (x == -1 && y == -1) {
-        panel.style.visibility = "collapse";
-    } else {
-        panel.style.visibility = "visible";
-    }
-    $.Schedule(0.01, function(){
-        RefreshPosition(panel, gamePos);
-    });
 }
 
 
