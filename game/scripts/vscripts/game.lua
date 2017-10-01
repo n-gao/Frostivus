@@ -136,6 +136,10 @@ function Game:GetGreevils()
     return result;
 end
 
+function Game:GetGiftBounty()
+    return shallowcopy(self.mapData.gift_bounty);
+end
+
 function Game:GetMaxGreevils()
     return self.mapData.max_greevils;
 end

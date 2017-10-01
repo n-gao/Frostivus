@@ -15,6 +15,16 @@ function GiftQuest:GetPoints()
     return self.giftsGiven + math.floor(self.giftsGiven/3);
 end
 
+function GiftQuest:GetGoldBounty()
+    local bounties = Game.GetInstance():GetGiftBounty();
+    return bounties.gold * self:GetPoints();
+end
+
+function GiftQuest:GetExperienceBounty()
+    local bounties = Game.GetInstance():GetGiftBounty();
+    return bounties.experience * self:GetPoints();
+end
+
 function GiftQuest.DropGift(position)
     if position == nil then
         error("Position must not be null.");

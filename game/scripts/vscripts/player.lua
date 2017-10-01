@@ -81,6 +81,8 @@ function Player:FullfillQuest(quest)
     end
     table.insert(self.fullfilledQuests, quest);
     local game = Game.GetInstance();
+    self:GetHero():AddExperience(quest:GetExperienceBounty(), DOTA_ModifyXP_Unspecified, false, false);
+    self:GetHero():ModifyGold(quest:GetGoldBounty(), true, DOTA_ModifyGold_Unspecified);
     local pointLimit = game:GetPointLimit();
     local teamPoints  = self:GetTeamPoints();
     CustomGameEventManager:Send_ServerToAllClients("player_scored", {

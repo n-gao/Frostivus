@@ -5,6 +5,11 @@
     "close_to_victory"      "20"
     "max_greevils"          "20"
     "time_limit_minutes"    "30"
+    "gift_bounty"
+    {
+        "gold"              "60"
+        "experience"        "200"
+    }
     "waypoints"
     {
         "1"         "path_inner_n"
