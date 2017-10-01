@@ -1,6 +1,5 @@
 .SpeechbubbleRoot {
     max-width: 500px;
-    background-color: red;
     horizontal-align: center;
     vertical-align: top;
     flow-children: down;

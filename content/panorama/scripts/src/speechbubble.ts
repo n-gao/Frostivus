@@ -1,19 +1,10 @@
 "use strict";
 
-interface SpeechBubble {
-    position : [number, number, number],
-    text : string,
-    duration : number,
-    params : string[],
-    shout : boolean,
-    entIndex : number
-}
-
-function ShowSpeechBubble(data : SpeechBubble) {
+function ShowSpeechbubble(data : Speechbubble) {
     $.Msg("[Speechbubble] Created with:");
     $.Msg(data);
-    var bubble = $.CreatePanel("Panel", $("#FrostivusSpeechBubbleRoot"), "Speechbubble");
-    bubble.BLoadLayout("file://{resources}/layout/custom_game/frostivus_speechbubble.xml", false, false);
+    var bubble = $.CreatePanel("Panel", $("#FrostivusSpeechbubbleRoot"), "Speechbubble");
+    bubble.BLoadLayout("file://{resources}/layout/custom_game/frostivus_Speechbubble.xml", false, false);
     var label = bubble.FindChildInLayoutFile("SpeechbubbleText") as LabelPanel;
     var text = FormatText(data.text, data.params);
     if (data.shout) {
@@ -42,7 +33,7 @@ function SimulateShout(panel : Panel) {
     });
 }
 
-function RefreshPosition(panel : Panel, data : SpeechBubble) {
+function RefreshPosition(panel : Panel, data : Speechbubble) {
     if (panel == null) {
         return;
     }
@@ -94,8 +85,8 @@ function FormatText(format : string, params : string[]) {
 
 
 (function() {
-    GameEvents.Subscribe("show_speechbubble", ShowSpeechBubble);
-    // ShowSpeechBubble({ 
+    GameEvents.Subscribe("show_Speechbubble", ShowSpeechbubble);
+    // ShowSpeechbubble({ 
     //     position : {x : 0, y : 0, z : 300},
     //     text : "this is a test 2",
     //     duration : 30000,

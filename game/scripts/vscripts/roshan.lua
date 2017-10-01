@@ -32,15 +32,18 @@ function Roshan:GiveGifts(player)
     player:FullfillQuest(quest);
     self:LookAt(player:GetHero():GetAbsOrigin());
     self:ThankPlayer(player);
-    self:StartHappyGesture();
+    self:TakeGesture();
+    LastGift = GameRules:GetGameTime();
 end
 
-function Roshan:StartHappyGesture()
+function Roshan:TakeGesture()
     local gestures = {
-        ACT_DOTA_ATTACK,
-        ACT_DOTA_CAST_ABILITY_3
+        ACT_DOTA_ATTACK
     };
     self:GetNpc():StartGesture(gestures[math.random(#gestures)]);
+    Timers:CreateTimer(0.1, function()
+        self:GetNpc():EmitSound("RoshanDT.Attack");
+    end)
 end
 
 function Roshan:LookAt(target)
@@ -60,7 +63,7 @@ function Roshan:ThankPlayer(player)
     self:ShowSpeechubble("#1 #2!", {
         [1] = "frostivus_roshan_thank_you",
         [2] = player:GetHero():GetName()
-    }, 20, false);
+    }, 5, false);
 end
 
 function Roshan:ShowSpeechubble(text, params, duration, shout)
@@ -87,4 +90,15 @@ function AngleFromVector(vec)
         angle = -angle;
     end
     return angle/math.pi * 180;
+end
+
+function Roshan:DemandGifts()
+    local interruption = Interruption(10, Game.GetInstance():GetPlayers());
+    self:ShowSpeechubble("frostivus_roshan_more_gifts", {}, 10, true);
+    self:GetNpc():StartGesture(ACT_DOTA_CAST_ABILITY_1);
+    self.particle = ParticelManager:CreateParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf", PATTACH_EYES_FOLLOW, self:GetParent());
+    Timers:CreateTimer(10, function ()
+        ParticleManager:DestroyParticle(self.particle, false);
+    end)
+    self:GetNpc():EmitSound("RoshanDT.Scream");
 end

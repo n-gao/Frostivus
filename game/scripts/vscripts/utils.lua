@@ -26,3 +26,12 @@ function deepcopy(orig)
     end
     return copy
 end
+
+function WrapObjectFunction(instance, functionName)
+    if type(instance[functionName]) ~= "function" then
+        error(functionName.." is not a function of the given instance.");
+    end
+    return function (...)
+        instance[functionName](...);
+    end
+end

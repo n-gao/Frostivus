@@ -22,9 +22,17 @@ Game = Game or class({
 
         LinkLuaModifier("modifier_interruption_lua", "abilities/modifier_interruption_lua.lua", LUA_MODIFIER_MOTION_NONE);
 
+        CustomGameEventManager:RegisterListener("player_scored", WrapObjectFunction(self, "OnPlayerScored"));
+
         self:LoadMapData();
 
         Timers:CreateTimer(FrameTime(), function()
+            CustomNetTables:SetTableValue("game_state", "victory_condition", {
+                points_to_win = self:GetPointLimit()
+            });
+            CustomNetTables:SetTableValue("game_state", "time_limit", {
+                seconds = self:GetTimeLimit()
+            });
             GameRules:SetPreGameTime(0);
             GameRules:SetShowcaseTime(0);
             GameRules:SetUseUniversalShopMode(true);
@@ -74,10 +82,30 @@ function Game:OnThinkRunning()
     if math.random() < 0.05 and #self:GetGreevils() < self:GetMaxGreevils() then
         CreateUnitByName("frostivus_greevil", self:GetRoshan():GetNpc():GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS);
     end
+    if GameRules:GetGameTime() >= self:GetTimeLimit() then
+        self:EndGameByTime();
+    end
 end
 
 function Game:OnThinkEnd()
 
+end
+
+function Game:EndGameByTime()
+    local winner = 2;
+    local highscore = 0;
+    for i = 0, DOTA_TEAM_COUNT do
+        local points = self:GetTeamPoints(i);
+        if i > highscore then
+            winner = i;
+            highscore = points;
+        end
+    end
+    self:EndGame(winner);
+end
+
+function Game:EndGame(winner)
+    GameRules:SetGameWinner(winner);
 end
 
 function Game:SetRoshan(roshan)
@@ -112,12 +140,43 @@ function Game:GetMaxGreevils()
     return self.mapData.max_greevils;
 end
 
+function Game:GetTimeLimit()
+    return self.mapData.time_limit_minutes * 60;
+end
+
+function Game:GetPointLimit()
+    return self.mapData.point_limit;
+end
+
+function Game:GetVeryCloseToVictoryLimit()
+    return self.mapData.very_close_to_victory;
+end
+
+function Game:GetCloseToVictoryLimit()
+    return self.mapData.close_to_victory;
+end
+
 function Game:GetWaypoints()
     return shallowcopy(self.waypoints);
 end
 
 function Game:GetWaypointNames()
     return shallowcopy(self.mapData.waypoints);
+end
+
+function Game:GetTeamPoints(team)
+    local result = 0;
+    for _, player in pairs(self:GetPlayers()) do
+        result = player:GetPoints();
+    end
+    return result;
+end
+
+function Game:OnPlayerScored(args)
+    if args.victory then
+        GameRules:SetGameWinner(args.team);
+    end
+    print("[Game] Team "..args.team.." has "..args.team_points.." points now.");
 end
 
 function Game:OnPlayerConnectFull(keys)

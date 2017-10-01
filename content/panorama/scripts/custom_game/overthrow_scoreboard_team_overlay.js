@@ -1,23 +1,22 @@
 "use strict";
 
-function OnKillEvent( event )
+function OnPlayerScored( event )
 {
 	var curTimeDS = Game.GetGameTime() * 10;
 	var teamPanel = $.GetContextPanel();
 	var teamId = $.GetContextPanel().GetAttributeInt( "team_id", -1 );
 //	$.Msg( "OnKillEvent:", event, " ? ", teamId );
-	if ( teamId !== event.team_id )
+	if ( teamId !== event.team )
 		return;
 
 //	$.Msg( event );
 
-	var recentScore = teamPanel.GetAttributeInt( "recent_score_count", 0 );
-	recentScore++;
+	var recentScore = event.team_points;
 	teamPanel.SetAttributeInt( "recent_score_count", recentScore );
 	teamPanel.SetAttributeInt( "ds_time_of_most_recent_score", curTimeDS );
 
 	var pointsToWinPanel = teamPanel.FindChildInLayoutFile( "PointsToWin" );
-	pointsToWinPanel.SetDialogVariableInt( "points_to_win", event.kills_remaining );
+	pointsToWinPanel.SetDialogVariableInt( "points_to_win", event.points_remaining );
 
 	if ( event.victory )
 	{
@@ -31,15 +30,18 @@ function OnKillEvent( event )
 		teamPanel.SetHasClass( "victory", false );
 		teamPanel.SetHasClass( "close_to_victory", false );
 		teamPanel.SetHasClass( "very_close_to_victory", true );
-		pointsToWinPanel.text = $.Localize( "#PointsToWin_VeryCloseToVictory", pointsToWinPanel );
+		pointsToWinPanel.text = event.points_remaining + $.Localize( "#PointsToWin_VeryCloseToVictory", pointsToWinPanel );
 	}
 	else if ( event.close_to_victory )
 	{
 		teamPanel.SetHasClass( "victory", false );
 		teamPanel.SetHasClass( "close_to_victory", true );
 		teamPanel.SetHasClass( "very_close_to_victory", false );
-		pointsToWinPanel.text = $.Localize( "#PointsToWin_CloseToVictory", pointsToWinPanel );
+		pointsToWinPanel.text = event.points_remaining + $.Localize( "#PointsToWin_CloseToVictory", pointsToWinPanel );
 	}
+	var recentScorePanel = teamPanel.FindChildInLayoutFile( "RecentScore" );
+    recentScorePanel.text = "+" + event.new_points;
+    $.Localize( "#RecentScore", recentScorePanel );
 
 	UpdateRecentScore();
 	$.Schedule( 1, UpdateRecentScore );
@@ -72,7 +74,6 @@ function UpdateRecentScore()
 	else
 	{
 		recentScorePanel.SetDialogVariableInt( "score", recentScore );
-		recentScorePanel.text = $.Localize( "#RecentScore", recentScorePanel );
 		recentScorePanel.SetHasClass( "recent_score", true );
 		recentScorePanel.SetHasClass( "no_recent_score", false );
 	}
@@ -85,5 +86,5 @@ function UpdateRecentScore()
 	var teamPanel = $.GetContextPanel();
 	teamPanel.SetAttributeInt( "recent_score_count", 0 );
 	teamPanel.SetAttributeInt( "ds_time_of_most_recent_score", 0 );
-	GameEvents.Subscribe( "kill_event", OnKillEvent );
+    GameEvents.Subscribe( "player_scored", OnPlayerScored );
 })();

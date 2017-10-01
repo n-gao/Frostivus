@@ -64,6 +64,10 @@ function Player:GetGiftCount()
     return self:GetHero():GetModifierStackCount("modifier_item_gift_lua", self:GetHero());
 end
 
+function Player:GetTeamPoints()
+    return Game.GetInstance():GetTeamPoints(self:GetTeamNumber());
+end
+
 function Player:RemoveGifts()
     if self:GetHero() == nil then
         return;
@@ -76,12 +80,24 @@ function Player:FullfillQuest(quest)
         error("A quest must be used to call this method.");
     end
     table.insert(self.fullfilledQuests, quest);
-    FireGameEvent("quest_fullfilled", {
-        playerId = self:GetPlayerId(),
-        questName = quest.name,
-        points = quest:GetPoints()
+    local game = Game.GetInstance();
+    local pointLimit = game:GetPointLimit();
+    local teamPoints  = self:GetTeamPoints();
+    CustomGameEventManager:Send_ServerToAllClients("player_scored", {
+        player_id = self:GetPlayerId(),
+        team = self:GetTeamNumber(),
+        new_points = quest:GetPoints(),
+        total_points = self:GetPoints(),
+        team_points = teamPoints,
+        points_remaining = pointLimit - teamPoints,
+        victory = pointLimit <= teamPoints,
+        close_to_victory = game:GetCloseToVictoryLimit() <= teamPoints,
+        very_close_to_victory = game:GetVeryCloseToVictoryLimit() <= teamPoints
     });
     print("[Player] "..self:GetPlayerId().." has "..self:GetPoints().." points now.");
+    if pointLimit <= teamPoints then
+        game:EndGame(self:GetTeamNumber());
+    end
 end
 
 function Player:Disconnect()

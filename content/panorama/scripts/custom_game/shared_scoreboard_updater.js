@@ -226,9 +226,11 @@ function _ScoreboardUpdater_UpdateTeamPanel( scoreboardConfig, containerPanel, t
 	if ( teamsInfo.max_team_players < teamPlayers.length )
 	{
 		teamsInfo.max_team_players = teamPlayers.length;
-	}
+    }
+    
+    var score = GameUI.CustomUIConfig().teamScores[teamDetails.team_id];
 
-	_ScoreboardUpdater_SetTextSafe( teamPanel, "TeamScore", teamDetails.team_score )
+	_ScoreboardUpdater_SetTextSafe( teamPanel, "TeamScore", score );
 	_ScoreboardUpdater_SetTextSafe( teamPanel, "TeamName", $.Localize( teamDetails.team_name ) )
 	
 	if ( GameUI.CustomUIConfig().team_colors )
@@ -288,11 +290,13 @@ function _ScoreboardUpdater_ReorderTeam( scoreboardConfig, teamsParent, teamPane
 // sort / reorder as necessary
 function compareFunc( a, b ) // GameUI.CustomUIConfig().sort_teams_compare_func;
 {
-	if ( a.team_score < b.team_score )
+    var scoreA = GameUI.CustomUIConfig().teamScores[a.team_id];
+    var scoreB = GameUI.CustomUIConfig().teamScores[b.team_id];
+	if ( scoreA < scoreB )
 	{
 		return 1; // [ B, A ]
 	}
-	else if ( a.team_score > b.team_score )
+	else if ( scoreA > scoreB )
 	{
 		return -1; // [ A, B ]
 	}
