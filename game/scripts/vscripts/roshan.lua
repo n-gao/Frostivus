@@ -94,11 +94,13 @@ end
 
 function Roshan:DemandGifts()
     local interruption = Interruption(10, Game.GetInstance():GetPlayers());
-    self:ShowSpeechubble("frostivus_roshan_more_gifts", {}, 10, true);
-    self:GetNpc():StartGesture(ACT_DOTA_CAST_ABILITY_1);
-    self.particle = ParticelManager:CreateParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf", PATTACH_EYES_FOLLOW, self:GetParent());
-    Timers:CreateTimer(10, function ()
-        ParticleManager:DestroyParticle(self.particle, false);
-    end)
-    self:GetNpc():EmitSound("RoshanDT.Scream");
+    Timers:CreateTimer(5, function ()
+        self:ShowSpeechubble("frostivus_roshan_more_gifts", {}, 10, true);
+        self:GetNpc():StartGesture(ACT_DOTA_CAST_ABILITY_1);
+        self.particle = ParticelManager:CreateParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf", PATTACH_EYES_FOLLOW, self:GetParent());
+        Timers:CreateTimer(10, function ()
+            ParticleManager:DestroyParticle(self.particle, false);
+        end)
+        self:GetNpc():EmitSound("RoshanDT.Scream");
+    end);
 end

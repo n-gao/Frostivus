@@ -1,7 +1,7 @@
 //=================================================================================	
-// Creature: Greevil
+// Creature: Dragon
 //=================================================================================
-"frostivus_greevil"	
+"frostivus_dragon"	
 {
 	// General
 	//----------------------------------------------------------------
@@ -12,7 +12,7 @@
 	"Level"						"1"
 	"ModelScale" 				"1"
     "IsAncient"                 "1"
-    "Vscripts"                  "triggers/greevil_spawn.lua"          
+    "Vscripts"                  "triggers/dragon_spawn.lua"          
 
 	// Abilities
 	//----------------------------------------------------------------
@@ -23,8 +23,8 @@
 
 	// Armor
 	//----------------------------------------------------------------
-	"ArmorPhysical"				"0"			// Physical protection.
-    "MagicalResistance"		    "0"		
+	"ArmorPhysical"				"5"			// Physical protection.
+    "MagicalResistance"		    "25"		
 
 	// Attack
 	//----------------------------------------------------------------
@@ -35,7 +35,7 @@
 	"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
 	"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 	"AttackRange"				"250"		// Range within a target can be attacked.
-	"ProjectileModel"			"" // Particle system model for projectile.
+	"ProjectileModel"			""          // Particle system model for projectile.
 	"ProjectileSpeed"			"1500"		// Speed of projectile.		     
 
 	// Bounds
@@ -46,20 +46,20 @@
 
 	// Bounty
 	//----------------------------------------------------------------
-	"BountyXP"					"124"		// Experience earn.
-	"BountyGoldMin"				"51"		// Gold earned min.
-	"BountyGoldMax"				"59"		// Gold earned max.
+	"BountyXP"					"1000"		// Experience earn.
+	"BountyGoldMin"				"125"		// Gold earned min.
+	"BountyGoldMax"				"135"		// Gold earned max.
 
 	// Movement
 	//----------------------------------------------------------------
-	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
 	"MovementSpeed"				"320"		// Speed.
     "MovementTurnRate"          "1.0"		
 
 	// Status
 	//----------------------------------------------------------------
-	"StatusHealth"				"300"		// Base health.
-	"StatusHealthRegen"			"5"		// Health regeneration rate.
+	"StatusHealth"				"1000"		// Base health.
+	"StatusHealthRegen"			"15"		// Health regeneration rate.
 	"StatusMana"				"200"			// Base mana.
 	"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
 	
