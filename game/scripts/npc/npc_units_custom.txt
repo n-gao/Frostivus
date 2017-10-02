@@ -1,326 +1,403 @@
 "DOTAUnits"
 {
-	//=================================================================================	
-	// Creature: Camera Helper
-	//=================================================================================
-	"frostivus_camera_helper"	
-	{
-		// General
-		//----------------------------------------------------------------
-		"Model"						"models/development/invisiblebox.vmdl"	// Model.
-		"BaseClass"					"npc_dota_creature"
-		"SoundSet"					""
-		"GameSoundsFile"			""
-		"Level"						"1"
-		"ModelScale" 				"1"
-	    "IsAncient"                 "1"
-	    "Vscripts"                  "triggers/camera_helper_spawn.lua"          
-	
-		// Abilities
-		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1
-		"Ability2"					""			// Ability 2
-		"Ability3"					""			// Ability 3
-		"Ability4"					""			// Ability 4
-	
-		// Armor
-		//----------------------------------------------------------------
-		"ArmorPhysical"				"0"			// Physical protection.
-	    "MagicalResistance"		    "0"		
-	
-		// Attack
-		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-		"AttackDamageMin"			"10"		// Damage range min.
-		"AttackDamageMax"			"20"		// Damage range max.
-		"AttackRate"				"0.6"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
-		"AttackRange"				"250"		// Range within a target can be attacked.
-		"ProjectileModel"			"" // Particle system model for projectile.
-		"ProjectileSpeed"			"1500"		// Speed of projectile.		     
-	
-		// Bounds
-		//----------------------------------------------------------------
-	    "BoundsHullName"            "DOTA_HULL_SIZE_SMALL"
-		"RingRadius"				"60"
-		"HealthBarOffset"			"100"
-	
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"124"		// Experience earn.
-		"BountyGoldMin"				"51"		// Gold earned min.
-		"BountyGoldMax"				"59"		// Gold earned max.
-	
-		// Movement
-		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
-		"MovementSpeed"				"1300"		// Speed.
-	    "MovementTurnRate"          "1.0"		
-	
-		// Status
-		//----------------------------------------------------------------
-		"StatusHealth"				"300"		// Base health.
-		"StatusHealthRegen"			"10"		// Health regeneration rate.
-		"StatusMana"				"200"			// Base mana.
-		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
-		
-		// Vision
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"0"		// Range of vision during day light.
-		"VisionNighttimeRange"		"0"		// Range of vision at night time.
-	
-		// Team
-		//----------------------------------------------------------------
-		"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
-	    "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
-	    "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
-	    "UnitRelationShipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-	}
-	//=================================================================================	
-	// Creature: Greevil
-	//=================================================================================
-	"frostivus_greevil"	
-	{
-		// General
-		//----------------------------------------------------------------
-		"Model"						"models/courier/gold_mega_greevil/gold_mega_greevil.vmdl"	// Model.
-		"BaseClass"					"npc_dota_creature"
-		"SoundSet"					"Roshan"
-		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-		"Level"						"1"
-		"ModelScale" 				"1"
-	    "IsAncient"                 "1"
-	    "Vscripts"                  "triggers/greevil_spawn.lua"          
-	
-		// Abilities
-		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1
-		"Ability2"					""			// Ability 2
-		"Ability3"					""			// Ability 3
-		"Ability4"					""			// Ability 4
-	
-		// Armor
-		//----------------------------------------------------------------
-		"ArmorPhysical"				"10"			// Physical protection.
-	    "MagicalResistance"		    "25"		
-	
-		// Attack
-		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-		"AttackDamageMin"			"10"		// Damage range min.
-		"AttackDamageMax"			"20"		// Damage range max.
-		"AttackRate"				"0.6"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
-		"AttackRange"				"250"		// Range within a target can be attacked.
-		"ProjectileModel"			"" // Particle system model for projectile.
-		"ProjectileSpeed"			"1500"		// Speed of projectile.		     
-	
-		// Bounds
-		//----------------------------------------------------------------
-	    "BoundsHullName"            "DOTA_HULL_SIZE_SMALL"
-		"RingRadius"				"60"
-		"HealthBarOffset"			"100"
-	
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"124"		// Experience earn.
-		"BountyGoldMin"				"51"		// Gold earned min.
-		"BountyGoldMax"				"59"		// Gold earned max.
-	
-		// Movement
-		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"320"		// Speed.
-	    "MovementTurnRate"          "1.0"		
-	
-		// Status
-		//----------------------------------------------------------------
-		"StatusHealth"				"300"		// Base health.
-		"StatusHealthRegen"			"10"		// Health regeneration rate.
-		"StatusMana"				"200"			// Base mana.
-		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
-		
-		// Vision
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"400"		// Range of vision during day light.
-		"VisionNighttimeRange"		"400"		// Range of vision at night time.
-	
-		// Team
-		//----------------------------------------------------------------
-		"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
-	    "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
-	    "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
-	    "UnitRelationShipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-	}
-	//=================================================================================	
-// Creature: Roshan
-//=================================================================================
-"frostivus_roshan"	
-{
-	// General
-	//----------------------------------------------------------------
-	"Model"						"models/creeps/roshan/roshan.vmdl"	// Model.
-	"BaseClass"					"npc_dota_creature"
-	"SoundSet"					"Roshan"
-	"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-	"Level"						"1"
-	"ModelScale" 				"1"
-    "IsAncient"                 "1"
-    "Vscripts"                  "triggers/roshan_spawn.lua"          
-
-	// Abilities
-	//----------------------------------------------------------------
-	"Ability1"					""			// Ability 1
-	"Ability2"					""			// Ability 2
-	"Ability3"					""			// Ability 3
-	"Ability4"					""			// Ability 4
-
-	// Armor
-	//----------------------------------------------------------------
-	"ArmorPhysical"				"10"			// Physical protection.
-    "MagicalResistance"		    "55"		
-
-	// Attack
-	//----------------------------------------------------------------
-	"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-	"AttackDamageMin"			"200"		// Damage range min.
-	"AttackDamageMax"			"300"		// Damage range max.
-	"AttackRate"				"0.6"		// Speed of attack.
-	"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-	"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
-	"AttackRange"				"250"		// Range within a target can be attacked.
-	"ProjectileModel"			"" // Particle system model for projectile.
-	"ProjectileSpeed"			"1500"		// Speed of projectile.		     
-
-	// Bounds
-	//----------------------------------------------------------------
-    "BoundsHullName"            "DOTA_HULL_SIZE_HERO"
-	"RingRadius"				"60"
-	"HealthBarOffset"			"250"
-
-	// Bounty
-	//----------------------------------------------------------------
-	"BountyXP"					"24"		// Experience earn.
-	"BountyGoldMin"				"21"		// Gold earned min.
-	"BountyGoldMax"				"29"		// Gold earned max.
-
-	// Movement
-	//----------------------------------------------------------------
-	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-	"MovementSpeed"				"270"		// Speed.
-    "MovementTurnRate"          "1.0"		
-
-	// Status
-	//----------------------------------------------------------------
-	"StatusHealth"				"5500"		// Base health.
-	"StatusHealthRegen"			"20"		// Health regeneration rate.
-	"StatusMana"				"0"			// Base mana.
-	"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
-	
-	// Vision
-	//----------------------------------------------------------------
-	"VisionDaytimeRange"		"400"		// Range of vision during day light.
-	"VisionNighttimeRange"		"400"		// Range of vision at night time.
-
-	// Team
-	//----------------------------------------------------------------
-	"TeamName"					"DOTA_TEAM_NOTEAM"						// Team name.
-    "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_HERO"
-    "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_HERO"
-    "UnitRelationShipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-
-    "precache"
+    //=================================================================================	
+    // Creature: Camera Helper
+    //=================================================================================
+    "frostivus_camera_helper"	
     {
-        "soundfile"             "soundevents/game_sounds_roshan_halloween.vsndevts"
-    }
-}
+    	// General
+    	//----------------------------------------------------------------
+    	"Model"						"models/development/invisiblebox.vmdl"	// Model.
+    	"BaseClass"					"npc_dota_creature"
+    	"SoundSet"					""
+    	"GameSoundsFile"			""
+    	"Level"						"1"
+    	"ModelScale" 				"1"
+        "IsAncient"                 "1"
+        "Vscripts"                  "triggers/camera_helper_spawn.lua"          
 
-	//=================================================================================	
-	// Creature: Gnoll Assassin
-	//=================================================================================
-	"npc_dota_creature_gnoll_assassin"	
-	{
-		// General
-		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_gnoll/n_creep_gnoll_frost.vmdl"	// Model.
-		"BaseClass"					"npc_dota_creature"
-		"SoundSet"					"n_creep_Ranged"
-		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-		"Level"						"1"
-		"ModelScale" 				".9"
+    	// Abilities
+    	//----------------------------------------------------------------
+    	"Ability1"					""			// Ability 1
+    	"Ability2"					""			// Ability 2
+    	"Ability3"					""			// Ability 3
+    	"Ability4"					""			// Ability 4
+
+    	// Armor
+    	//----------------------------------------------------------------
+    	"ArmorPhysical"				"0"			// Physical protection.
+        "MagicalResistance"		    "0"		
+
+    	// Attack
+    	//----------------------------------------------------------------
+    	"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+    	"AttackDamageMin"			"10"		// Damage range min.
+    	"AttackDamageMax"			"20"		// Damage range max.
+    	"AttackRate"				"0.6"		// Speed of attack.
+    	"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+    	"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+    	"AttackRange"				"250"		// Range within a target can be attacked.
+    	"ProjectileModel"			"" // Particle system model for projectile.
+    	"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+
+    	// Bounds
+    	//----------------------------------------------------------------
+        "BoundsHullName"            "DOTA_HULL_SIZE_SMALL"
+    	"RingRadius"				"60"
+    	"HealthBarOffset"			"100"
+
+    	// Bounty
+    	//----------------------------------------------------------------
+    	"BountyXP"					"124"		// Experience earn.
+    	"BountyGoldMin"				"51"		// Gold earned min.
+    	"BountyGoldMax"				"59"		// Gold earned max.
+
+    	// Movement
+    	//----------------------------------------------------------------
+    	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+    	"MovementSpeed"				"1300"		// Speed.
+        "MovementTurnRate"          "1.0"		
+
+    	// Status
+    	//----------------------------------------------------------------
+    	"StatusHealth"				"300"		// Base health.
+    	"StatusHealthRegen"			"10"		// Health regeneration rate.
+    	"StatusMana"				"200"			// Base mana.
+    	"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
 	
-		// Abilities
-		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1
-		"Ability2"					""			// Ability 2
-		"Ability3"					""			// Ability 3
-		"Ability4"					""			// Ability 4
+    	// Vision
+    	//----------------------------------------------------------------
+    	"VisionDaytimeRange"		"0"		// Range of vision during day light.
+    	"VisionNighttimeRange"		"0"		// Range of vision at night time.
+
+    	// Team
+    	//----------------------------------------------------------------
+    	"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+        "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
+        "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
+        "UnitRelationShipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    }
+    //=================================================================================	
+    // Creature: Dragon
+    //=================================================================================
+    "frostivus_dragon"	
+    {
+    	// General
+    	//----------------------------------------------------------------
+    	"Model"						"models/courier/gold_mega_greevil/gold_mega_greevil.vmdl"	// Model.
+    	"BaseClass"					"npc_dota_creature"
+    	"SoundSet"					"Roshan"
+    	"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+    	"Level"						"1"
+    	"ModelScale" 				"1"
+        "IsAncient"                 "1"
+        "Vscripts"                  "triggers/dragon_spawn.lua"          
+
+    	// Abilities
+    	//----------------------------------------------------------------
+    	"Ability1"					"frostivus_fireball"			// Ability 1
+    	"Ability2"					""			// Ability 2
+    	"Ability3"					""			// Ability 3
+    	"Ability4"					""			// Ability 4
+
+    	// Armor
+    	//----------------------------------------------------------------
+    	"ArmorPhysical"				"5"			// Physical protection.
+        "MagicalResistance"		    "25"		
+
+    	// Attack
+    	//----------------------------------------------------------------
+    	"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+    	"AttackDamageMin"			"10"		// Damage range min.
+    	"AttackDamageMax"			"20"		// Damage range max.
+    	"AttackRate"				"0.6"		// Speed of attack.
+    	"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+    	"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+    	"AttackRange"				"250"		// Range within a target can be attacked.
+    	"ProjectileModel"			""          // Particle system model for projectile.
+    	"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+
+    	// Bounds
+    	//----------------------------------------------------------------
+        "BoundsHullName"            "DOTA_HULL_SIZE_SMALL"
+    	"RingRadius"				"60"
+    	"HealthBarOffset"			"100"
+
+    	// Bounty
+    	//----------------------------------------------------------------
+    	"BountyXP"					"1000"		// Experience earn.
+    	"BountyGoldMin"				"125"		// Gold earned min.
+    	"BountyGoldMax"				"135"		// Gold earned max.
+
+    	// Movement
+    	//----------------------------------------------------------------
+    	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+    	"MovementSpeed"				"320"		// Speed.
+        "MovementTurnRate"          "1.0"		
+
+    	// Status
+    	//----------------------------------------------------------------
+    	"StatusHealth"				"1000"		// Base health.
+    	"StatusHealthRegen"			"15"		// Health regeneration rate.
+    	"StatusMana"				"200"			// Base mana.
+    	"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
 	
-		// Armor
-		//----------------------------------------------------------------
-		"ArmorPhysical"				"1"			// Physical protection.
+    	// Vision
+    	//----------------------------------------------------------------
+    	"VisionDaytimeRange"		"400"		// Range of vision during day light.
+    	"VisionNighttimeRange"		"400"		// Range of vision at night time.
+
+    	// Team
+    	//----------------------------------------------------------------
+    	"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+        "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
+        "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
+        "UnitRelationShipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    }
+    //=================================================================================	
+    // Creature: Greevil
+    //=================================================================================
+    "frostivus_greevil"	
+    {
+    	// General
+    	//----------------------------------------------------------------
+    	"Model"						"models/courier/gold_mega_greevil/gold_mega_greevil.vmdl"	// Model.
+    	"BaseClass"					"npc_dota_creature"
+    	"SoundSet"					"Roshan"
+    	"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+    	"Level"						"1"
+    	"ModelScale" 				"1"
+        "IsAncient"                 "1"
+        "Vscripts"                  "triggers/greevil_spawn.lua"          
+
+    	// Abilities
+    	//----------------------------------------------------------------
+    	"Ability1"					"frostivus_fireball"			// Ability 1
+    	"Ability2"					""			// Ability 2
+    	"Ability3"					""			// Ability 3
+    	"Ability4"					""			// Ability 4
+
+    	// Armor
+    	//----------------------------------------------------------------
+    	"ArmorPhysical"				"0"			// Physical protection.
+        "MagicalResistance"		    "0"		
+
+    	// Attack
+    	//----------------------------------------------------------------
+    	"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+    	"AttackDamageMin"			"10"		// Damage range min.
+    	"AttackDamageMax"			"20"		// Damage range max.
+    	"AttackRate"				"0.6"		// Speed of attack.
+    	"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+    	"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+    	"AttackRange"				"250"		// Range within a target can be attacked.
+    	"ProjectileModel"			"" // Particle system model for projectile.
+    	"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+
+    	// Bounds
+    	//----------------------------------------------------------------
+        "BoundsHullName"            "DOTA_HULL_SIZE_SMALL"
+    	"RingRadius"				"60"
+    	"HealthBarOffset"			"100"
+
+    	// Bounty
+    	//----------------------------------------------------------------
+    	"BountyXP"					"124"		// Experience earn.
+    	"BountyGoldMin"				"51"		// Gold earned min.
+    	"BountyGoldMax"				"59"		// Gold earned max.
+
+    	// Movement
+    	//----------------------------------------------------------------
+    	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+    	"MovementSpeed"				"320"		// Speed.
+        "MovementTurnRate"          "1.0"		
+
+    	// Status
+    	//----------------------------------------------------------------
+    	"StatusHealth"				"300"		// Base health.
+    	"StatusHealthRegen"			"5"		// Health regeneration rate.
+    	"StatusMana"				"200"			// Base mana.
+    	"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
 	
-		// Attack
-		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"30"		// Damage range min.
-		"AttackDamageMax"			"36"		// Damage range max.
-		"AttackRate"				"1.6"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
-		"AttackRange"				"500"		// Range within a target can be attacked.
-		"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
-		"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+    	// Vision
+    	//----------------------------------------------------------------
+    	"VisionDaytimeRange"		"400"		// Range of vision during day light.
+    	"VisionNighttimeRange"		"400"		// Range of vision at night time.
+
+    	// Team
+    	//----------------------------------------------------------------
+    	"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+        "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
+        "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
+        "UnitRelationShipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    }
+    //=================================================================================	
+    // Creature: Roshan
+    //=================================================================================
+    "frostivus_roshan"	
+    {
+    	// General
+    	//----------------------------------------------------------------
+    	"Model"						"models/creeps/roshan/roshan.vmdl"	// Model.
+    	"BaseClass"					"npc_dota_creature"
+    	"SoundSet"					"Roshan"
+    	"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+    	"Level"						"1"
+    	"ModelScale" 				"1"
+        "IsAncient"                 "1"
+        "Vscripts"                  "triggers/roshan_spawn.lua"          
+
+    	// Abilities
+    	//----------------------------------------------------------------
+    	"Ability1"					""			// Ability 1
+    	"Ability2"					""			// Ability 2
+    	"Ability3"					""			// Ability 3
+    	"Ability4"					""			// Ability 4
+
+    	// Armor
+    	//----------------------------------------------------------------
+    	"ArmorPhysical"				"10"			// Physical protection.
+        "MagicalResistance"		    "55"		
+
+    	// Attack
+    	//----------------------------------------------------------------
+    	"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+    	"AttackDamageMin"			"200"		// Damage range min.
+    	"AttackDamageMax"			"300"		// Damage range max.
+    	"AttackRate"				"0.6"		// Speed of attack.
+    	"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+    	"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+    	"AttackRange"				"250"		// Range within a target can be attacked.
+    	"ProjectileModel"			"" // Particle system model for projectile.
+    	"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+
+    	// Bounds
+    	//----------------------------------------------------------------
+        "BoundsHullName"            "DOTA_HULL_SIZE_HERO"
+    	"RingRadius"				"60"
+    	"HealthBarOffset"			"250"
+
+    	// Bounty
+    	//----------------------------------------------------------------
+    	"BountyXP"					"24"		// Experience earn.
+    	"BountyGoldMin"				"21"		// Gold earned min.
+    	"BountyGoldMax"				"29"		// Gold earned max.
+
+    	// Movement
+    	//----------------------------------------------------------------
+    	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+    	"MovementSpeed"				"270"		// Speed.
+        "MovementTurnRate"          "1.0"		
+
+    	// Status
+    	//----------------------------------------------------------------
+    	"StatusHealth"				"5500"		// Base health.
+    	"StatusHealthRegen"			"20"		// Health regeneration rate.
+    	"StatusMana"				"0"			// Base mana.
+    	"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
 	
-		// Bounds
-		//----------------------------------------------------------------
-		"RingRadius"				"40"
-		"HealthBarOffset"			"170"
+    	// Vision
+    	//----------------------------------------------------------------
+    	"VisionDaytimeRange"		"400"		// Range of vision during day light.
+    	"VisionNighttimeRange"		"400"		// Range of vision at night time.
+
+    	// Team
+    	//----------------------------------------------------------------
+    	"TeamName"					"DOTA_TEAM_NOTEAM"						// Team name.
+        "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_HERO"
+        "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_HERO"
+        "UnitRelationShipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+        "precache"
+        {
+            "soundfile"             "soundevents/game_sounds_roshan_halloween.vsndevts"
+        }
+    }
+    //=================================================================================	
+    // Creature: Gnoll Assassin
+    //=================================================================================
+    "npc_dota_creature_gnoll_assassin"	
+    {
+    	// General
+    	//----------------------------------------------------------------
+    	"Model"						"models/creeps/neutral_creeps/n_creep_gnoll/n_creep_gnoll_frost.vmdl"	// Model.
+    	"BaseClass"					"npc_dota_creature"
+    	"SoundSet"					"n_creep_Ranged"
+    	"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+    	"Level"						"1"
+    	"ModelScale" 				".9"
+
+    	// Abilities
+    	//----------------------------------------------------------------
+    	"Ability1"					""			// Ability 1
+    	"Ability2"					""			// Ability 2
+    	"Ability3"					""			// Ability 3
+    	"Ability4"					""			// Ability 4
+
+    	// Armor
+    	//----------------------------------------------------------------
+    	"ArmorPhysical"				"1"			// Physical protection.
+
+    	// Attack
+    	//----------------------------------------------------------------
+    	"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+    	"AttackDamageMin"			"30"		// Damage range min.
+    	"AttackDamageMax"			"36"		// Damage range max.
+    	"AttackRate"				"1.6"		// Speed of attack.
+    	"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+    	"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+    	"AttackRange"				"500"		// Range within a target can be attacked.
+    	"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
+    	"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+
+    	// Bounds
+    	//----------------------------------------------------------------
+    	"RingRadius"				"40"
+    	"HealthBarOffset"			"170"
+
+    	// Bounty
+    	//----------------------------------------------------------------
+    	"BountyXP"					"24"		// Experience earn.
+    	"BountyGoldMin"				"21"		// Gold earned min.
+    	"BountyGoldMax"				"29"		// Gold earned max.
+
+    	// Movement
+    	//----------------------------------------------------------------
+    	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+    	"MovementSpeed"				"270"		// Speed.			
+
+    	// Status
+    	//----------------------------------------------------------------
+    	"StatusHealth"				"75"		// Base health.
+    	"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+    	"StatusMana"				"0"			// Base mana.
+    	"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
 	
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"24"		// Experience earn.
-		"BountyGoldMin"				"21"		// Gold earned min.
-		"BountyGoldMax"				"29"		// Gold earned max.
-	
-		// Movement
-		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"270"		// Speed.			
-	
-		// Status
-		//----------------------------------------------------------------
-		"StatusHealth"				"75"		// Base health.
-		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
-		"StatusMana"				"0"			// Base mana.
-		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
-		
-		// Vision
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"400"		// Range of vision during day light.
-		"VisionNighttimeRange"		"400"		// Range of vision at night time.
-	
-		// Team
-		//----------------------------------------------------------------
-		"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-	
-		// Creature Data
-		//----------------------------------------------------------------
-		"Creature"
-		{
-			//Level Up
-			"HPGain"					"50"
-			"DamageGain"				"2"
-			"ArmorGain"					"0.25"
-			"MagicResistGain"			"0.1"
-			"MoveSpeedGain"				"1"
-			"BountyGain"				"3"
-			"XPGain"					"15"
-		}
-	}
+    	// Vision
+    	//----------------------------------------------------------------
+    	"VisionDaytimeRange"		"400"		// Range of vision during day light.
+    	"VisionNighttimeRange"		"400"		// Range of vision at night time.
+
+    	// Team
+    	//----------------------------------------------------------------
+    	"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+    	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+    	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+    	"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+    	// Creature Data
+    	//----------------------------------------------------------------
+    	"Creature"
+    	{
+    		//Level Up
+    		"HPGain"					"50"
+    		"DamageGain"				"2"
+    		"ArmorGain"					"0.25"
+    		"MagicResistGain"			"0.1"
+    		"MoveSpeedGain"				"1"
+    		"BountyGain"				"3"
+    		"XPGain"					"15"
+    	}
+    }
+
 }

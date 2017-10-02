@@ -16,7 +16,7 @@
 	"AbilityTextureName"			"jakiro_macropyre"
 
 
-    "AbilityDamage"                 "100"
+    "AbilityDamage"                 "100" 
 	// Casting
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityCastRange"				"900"
