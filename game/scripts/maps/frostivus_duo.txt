@@ -4,7 +4,9 @@
     "very_close_to_victory" "25"
     "close_to_victory"      "20"
     "max_greevils"          "20"
+    "max_dragons"           "15"
     "time_limit_minutes"    "30"
+    "high_score_trigger"    "10"
     "gift_bounty"
     {
         "gold"              "60"

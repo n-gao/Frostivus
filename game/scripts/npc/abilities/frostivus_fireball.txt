@@ -50,12 +50,12 @@
 		"02"
 		{
 			"var_type"					"FIELD_INTEGER"
-			"radius"    				"240"
+			"radius"    				"180"
 		}			
 		"03"
 		{
 			"var_type"					"FIELD_FLOAT"
-			"burn_interval"				"0.5"
+			"burn_interval"				"0.25"
 		}
 	}
 }

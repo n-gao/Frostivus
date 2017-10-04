@@ -16,7 +16,7 @@
 
 	// Abilities
 	//----------------------------------------------------------------
-	"Ability1"					"frostivus_fireball"			// Ability 1
+	"Ability1"					""			// Ability 1
 	"Ability2"					""			// Ability 2
 	"Ability3"					""			// Ability 3
 	"Ability4"					""			// Ability 4
@@ -58,7 +58,7 @@
 
 	// Status
 	//----------------------------------------------------------------
-	"StatusHealth"				"300"		// Base health.
+	"StatusHealth"				"200"		// Base health.
 	"StatusHealthRegen"			"5"		// Health regeneration rate.
 	"StatusMana"				"200"			// Base mana.
 	"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 

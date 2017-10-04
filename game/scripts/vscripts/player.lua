@@ -84,20 +84,26 @@ function Player:FullfillQuest(quest)
     local bounty = game:GetGiftBounty();
     self:GetHero():AddExperience(quest:GetExperienceBounty(), DOTA_ModifyXP_Unspecified, false, false);
     self:GetHero():ModifyGold(quest:GetGoldBounty(), true, DOTA_ModifyGold_Unspecified);
+    self:ShareScored(quest:GetPoints());
+end
+
+function Player:ShareScored(points)
+    local game = Game.GetInstance();
     local pointLimit = game:GetPointLimit();
     local teamPoints  = self:GetTeamPoints();
-    CustomGameEventManager:Send_ServerToAllClients("player_scored", {
+    local args = {
         player_id = self:GetPlayerId(),
         team = self:GetTeamNumber(),
-        new_points = quest:GetPoints(),
+        new_points = points,
         total_points = self:GetPoints(),
         team_points = teamPoints,
         points_remaining = pointLimit - teamPoints,
         victory = pointLimit <= teamPoints,
         close_to_victory = game:GetCloseToVictoryLimit() <= teamPoints,
         very_close_to_victory = game:GetVeryCloseToVictoryLimit() <= teamPoints
-    });
-    print("[Player] "..self:GetPlayerId().." has "..self:GetPoints().." points now.");
+    };
+    CustomGameEventManager:Send_ServerToAllClients("player_scored", args);
+    Game.GetInstance():OnPlayerScored(args);
     if pointLimit <= teamPoints then
         game:EndGame(self:GetTeamNumber());
     end

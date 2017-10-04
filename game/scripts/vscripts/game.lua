@@ -1,28 +1,36 @@
 require("player");
 require("utils");
+require("commands");
 
 Game = Game or class({
     _gameState = GAMESTATE_PREPARATION,
     _gameTimer = nil,
     players = {},
     greevils = {},
+    dragons = {},
     waypoints = {},
     mapData = nil,
     roshan = nil,
+    teamsWithHighScores = {},
+    commandEngine = nil,
 
     constructor = function(self)
         self._gameTimer = Timers:CreateTimer(0, function()
             return self:OnThink();
         end);
 
+        self.commandEngine = CommandEngine();
+
         ListenToGameEvent("player_connect_full", Dynamic_Wrap(Game, "OnPlayerConnectFull"), self);
         ListenToGameEvent('player_disconnect', Dynamic_Wrap(Game, 'OnPlayerDisconnect'), self)
         ListenToGameEvent("npc_spawned", Dynamic_Wrap(Game, "OnNpcSpawned"), self);
         ListenToGameEvent("entity_killed", Dynamic_Wrap(Game, "OnNpcKilled"), self);
 
-        LinkLuaModifier("modifier_interruption_lua", "abilities/modifier_interruption_lua.lua", LUA_MODIFIER_MOTION_NONE);
+        if GameRules:IsCheatMode() then
+            ListenToGameEvent("player_chat", Dynamic_Wrap(CommandEngine, "OnPlayerChat"), self.commandEngine);
+        end
 
-        CustomGameEventManager:RegisterListener("player_scored", WrapObjectFunction(self, "OnPlayerScored"));
+        LinkLuaModifier("modifier_interruption_lua", "abilities/modifier_interruption_lua.lua", LUA_MODIFIER_MOTION_NONE);
 
         self:LoadMapData();
 
@@ -80,7 +88,7 @@ end
 
 function Game:OnThinkRunning()
     if math.random() < 0.05 and #self:GetGreevils() < self:GetMaxGreevils() then
-        CreateUnitByName("frostivus_greevil", self:GetRoshan():GetNpc():GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS);
+        self:SpawnGreevils(1);
     end
     if GameRules:GetGameTime() >= self:GetTimeLimit() then
         self:EndGameByTime();
@@ -119,6 +127,12 @@ function Game:GetRoshan()
     return self.roshan;
 end
 
+function Game:SpawnGreevils(amount)
+    for i = 1, amount do
+        CreateUnitByName("frostivus_greevil", self:GetRoshan():GetNpc():GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS);
+    end
+end
+
 function Game:AddGreevil(greevil)
     if not instanceof(greevil, Greevil) then
         error("The given value must be an instance of Greevil.");
@@ -136,12 +150,43 @@ function Game:GetGreevils()
     return result;
 end
 
+function Game:SpawnDragons(amount)
+    for i = 1, amount do
+        CreateUnitByName("frostivus_dragon", self:GetRoshan():GetNpc():GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS);
+    end
+end
+
+function Game:AddDragon(dragon)
+    if not instanceof(dragon, Dragon) then
+        error("The given value must be an instance of Dragon.");
+    end
+    table.insert(self.dragons, dragon:GetId(), dragon);
+end
+
+function Game:GetDragons()
+    local result = {};
+    for key, dragon in pairs(self.dragons) do
+        if dragon:IsAlive() then
+            table.insert(result, dragon);
+        end
+    end
+    return result;
+end
+
 function Game:GetGiftBounty()
     return shallowcopy(self.mapData.gift_bounty);
 end
 
 function Game:GetMaxGreevils()
     return self.mapData.max_greevils;
+end
+
+function Game:GetMaxDragons()
+    return self.mapData.max_dragons;
+end
+
+function Game:GetHighScoreTrigger()
+    return self.mapData.high_score_trigger;
 end
 
 function Game:GetTimeLimit()
@@ -179,6 +224,11 @@ end
 function Game:OnPlayerScored(args)
     if args.victory then
         GameRules:SetGameWinner(args.team);
+        return;
+    end
+    if args.team_points >= self:GetHighScoreTrigger() and not self.teamsWithHighScores[args.team] then
+        self:GetRoshan():DemandGifts();
+        self.teamsWithHighScores[args.team] = true;
     end
     print("[Game] Team "..args.team.." has "..args.team_points.." points now.");
 end

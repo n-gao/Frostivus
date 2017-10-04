@@ -15,5 +15,13 @@ Unit = Unit or class({
     OnDied = function(self, murderer) end,
     OnKilled = function(self, victim) end,
     OnThink = function(self) end,
-    GetNpc = function(self) return self.npc end
+    GetNpc = function(self) return self.npc end,
+    IsAlive = function(self) return not self.npc:IsNull() and self.npc:IsAlive() end,
+    GetAbsOrigin = function(self)
+        if self.npc then
+            return self.npc:GetAbsOrigin();
+        else
+            return Vector(0, 0, 0);
+        end
+    end
 });

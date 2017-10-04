@@ -4,6 +4,7 @@ require("giftquest");
 Greevil = Greevil or class({
     id = 0,
     waypoint = nil,
+    bounty = 1,
 
     constructor = function(self, npc)
         Unit.constructor(self, npc);
@@ -38,7 +39,7 @@ end
 
 function Greevil:DropGift()
     print("[Greevil] "..self:GetId().." is dropping a gift.");
-    GiftQuest.DropGift(self:GetDropPosition());
+    GiftQuest.DropGifts(self:GetDropPosition(), self.bounty);
 end
 
 function Greevil:GetWaypoint()
@@ -47,10 +48,6 @@ end
 
 function Greevil:GetId()
     return self.id;
-end
-
-function Greevil:IsAlive()
-    return not self.npc:IsNull() and self.npc:IsAlive();
 end
 
 function Greevil:DistanceToWaypoint()
@@ -77,4 +74,8 @@ end
 
 function Greevil:MoveToWaypoint()
     self:GetNpc():MoveToPosition(self:GetWaypoint():GetAbsOrigin());
+end
+
+function Greevil:SetBounty(bounty)
+    self.bounty = bounty;
 end

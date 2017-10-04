@@ -1,30 +1,30 @@
 //=================================================================================	
-// Creature: Dragon
+// Creature: Dummy
 //=================================================================================
-"frostivus_dragon"	
+"frostivus_dummy"	
 {
 	// General
 	//----------------------------------------------------------------
-	"Model"						"models/courier/greevil/gold_greevil_flying.vmdl"	// Model.
+	"Model"						"models/development/invisiblebox.vmdl"	// Model.
 	"BaseClass"					"npc_dota_creature"
-	"SoundSet"					"Roshan"
-	"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+	"SoundSet"					""
+	"GameSoundsFile"			""
 	"Level"						"1"
 	"ModelScale" 				"1"
-    "IsAncient"                 "1"
-    "Vscripts"                  "triggers/dragon_spawn.lua"          
+    "IsAncient"                 "0"
+    "Vscripts"                  "triggers/dummy_spawn.lua"          
 
 	// Abilities
 	//----------------------------------------------------------------
-	"Ability1"					"frostivus_fireball"			// Ability 1
+	"Ability1"					""			// Ability 1
 	"Ability2"					""			// Ability 2
 	"Ability3"					""			// Ability 3
 	"Ability4"					""			// Ability 4
 
 	// Armor
 	//----------------------------------------------------------------
-	"ArmorPhysical"				"5"			// Physical protection.
-    "MagicalResistance"		    "25"		
+	"ArmorPhysical"				"0"			// Physical protection.
+    "MagicalResistance"		    "0"		
 
 	// Attack
 	//----------------------------------------------------------------
@@ -35,7 +35,7 @@
 	"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
 	"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 	"AttackRange"				"250"		// Range within a target can be attacked.
-	"ProjectileModel"			""          // Particle system model for projectile.
+	"ProjectileModel"			"" // Particle system model for projectile.
 	"ProjectileSpeed"			"1500"		// Speed of projectile.		     
 
 	// Bounds
@@ -46,27 +46,27 @@
 
 	// Bounty
 	//----------------------------------------------------------------
-	"BountyXP"					"1000"		// Experience earn.
-	"BountyGoldMin"				"125"		// Gold earned min.
-	"BountyGoldMax"				"135"		// Gold earned max.
+	"BountyXP"					"124"		// Experience earn.
+	"BountyGoldMin"				"51"		// Gold earned min.
+	"BountyGoldMax"				"59"		// Gold earned max.
 
 	// Movement
 	//----------------------------------------------------------------
 	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
-	"MovementSpeed"				"320"		// Speed.
+	"MovementSpeed"				"1300"		// Speed.
     "MovementTurnRate"          "1.0"		
 
 	// Status
 	//----------------------------------------------------------------
-	"StatusHealth"				"1000"		// Base health.
-	"StatusHealthRegen"			"15"		// Health regeneration rate.
+	"StatusHealth"				"300"		// Base health.
+	"StatusHealthRegen"			"10"		// Health regeneration rate.
 	"StatusMana"				"200"			// Base mana.
 	"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
 	
 	// Vision
 	//----------------------------------------------------------------
-	"VisionDaytimeRange"		"400"		// Range of vision during day light.
-	"VisionNighttimeRange"		"400"		// Range of vision at night time.
+	"VisionDaytimeRange"		"0"		// Range of vision during day light.
+	"VisionNighttimeRange"		"0"		// Range of vision at night time.
 
 	// Team
 	//----------------------------------------------------------------

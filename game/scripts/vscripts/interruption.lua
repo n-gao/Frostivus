@@ -16,7 +16,7 @@ end
 function Interruption:Start()
     for _, player in pairs(self.players) do
         local hero = player:GetHero();
-        if hero and hero:HasModifier("modifier_interruption_lua") then
+        if hero and not hero:HasModifier("modifier_interruption_lua") then
             hero:AddNewModifier(hero, nil, "modifier_interruption_lua", {
                 duration = self.duration
             });

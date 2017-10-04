@@ -35,3 +35,11 @@ function WrapObjectFunction(instance, functionName)
         instance[functionName](...);
     end
 end
+
+function string.split(str)
+    local result = {}
+    for i in string.gmatch(str, "%S+") do
+        table.insert(result, i);
+    end
+    return result;
+end

@@ -1,4 +1,5 @@
-require("Unit");
+require("unit");
+require("interruption");
 
 LinkLuaModifier("modifier_roshan_invulnerable_lua", "abilities/modifier_roshan_invulnerable_lua.lua", LUA_MODIFIER_MOTION_NONE);
 
@@ -8,7 +9,7 @@ Roshan = Roshan or class({
     constructor = function(self, npc)
         Unit.constructor(self, npc);
         
-        self.npc:AddNewModifier(nil, nil, "modifier_roshan_invulnerable_lua", {});
+        self.npc:AddNewModifier(npc, nil, "modifier_roshan_invulnerable_lua", {});
         Timers:CreateTimer(0, function()
             self:GetNpc():StartGesture(ACT_DOTA_IDLE);
         end);
@@ -94,13 +95,20 @@ end
 
 function Roshan:DemandGifts()
     local interruption = Interruption(10, Game.GetInstance():GetPlayers());
-    Timers:CreateTimer(5, function ()
-        self:ShowSpeechubble("frostivus_roshan_more_gifts", {}, 10, true);
-        self:GetNpc():StartGesture(ACT_DOTA_CAST_ABILITY_1);
-        self.particle = ParticelManager:CreateParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf", PATTACH_EYES_FOLLOW, self:GetParent());
-        Timers:CreateTimer(10, function ()
+    Timers:CreateTimer(4, function ()
+        self:ShowSpeechubble("frostivus_roshan_more_gifts", {}, 6, true);
+        local npc = self:GetNpc();
+        npc:StartGesture(ACT_DOTA_CAST_ABILITY_1);
+        local attachmentId = npc:ScriptLookupAttachment("attach_hitloc");
+        self.particle = ParticleManager:CreateParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf", attachmentId, npc);
+        Timers:CreateTimer(6, function ()
             ParticleManager:DestroyParticle(self.particle, false);
         end)
+    end);
+    Timers:CreateTimer(5, function()
         self:GetNpc():EmitSound("RoshanDT.Scream");
+    end);
+    Timers:CreateTimer(8, function()
+        Game.GetInstance():SpawnDragons(10);
     end);
 end
