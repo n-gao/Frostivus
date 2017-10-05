@@ -4,7 +4,7 @@ require("interruption");
 LinkLuaModifier("modifier_roshan_invulnerable_lua", "abilities/modifier_roshan_invulnerable_lua.lua", LUA_MODIFIER_MOTION_NONE);
 
 Roshan = Roshan or class({
-    LastGift = 0,
+    lastGift = 0,
 
     constructor = function(self, npc)
         Unit.constructor(self, npc);
@@ -17,6 +17,12 @@ Roshan = Roshan or class({
 }, {}, Unit);
 
 function Roshan:OnThink()
+    if GameRules:GetGameTime() - lastGift > 15 then
+        if math.random() > 0.8 then
+            self:Sunstrike();
+            self.lastGift = GameRules:GetGameTime();
+        end
+    end
     return 0.5;
 end
 
@@ -34,7 +40,7 @@ function Roshan:GiveGifts(player)
     self:LookAt(player:GetHero():GetAbsOrigin());
     self:ThankPlayer(player);
     self:TakeGesture();
-    LastGift = GameRules:GetGameTime();
+    lastGift = GameRules:GetGameTime();
 end
 
 function Roshan:TakeGesture()
@@ -100,9 +106,9 @@ function Roshan:DemandGifts()
         local npc = self:GetNpc();
         npc:StartGesture(ACT_DOTA_CAST_ABILITY_1);
         local attachmentId = npc:ScriptLookupAttachment("attach_hitloc");
-        self.particle = ParticleManager:CreateParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf", attachmentId, npc);
+        local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf", attachmentId, npc);
         Timers:CreateTimer(6, function ()
-            ParticleManager:DestroyParticle(self.particle, false);
+            ParticleManager:DestroyParticle(particle, false);
         end)
     end);
     Timers:CreateTimer(5, function()
@@ -110,5 +116,20 @@ function Roshan:DemandGifts()
     end);
     Timers:CreateTimer(8, function()
         Game.GetInstance():SpawnDragons(10);
+    end);
+end
+
+function Roshan:Sunstrike()
+    -- local interruption = Interruption(5, Game.GetInstance():GetPlayers());
+    local npc = self:GetNpc();
+    self:ShowSpeechubble("frostivus_roshan_not_enough", {}, 3, true);
+    npc:StartGesture(ACT_DOTA_CAST_ABILITY_3);
+    Timers:CreateTimer(0.5, function()
+        npc:EmitSound("Roshan.Slam");
+        local particle = ParticleManager:CreateParticle("particles/neutral_fx/roshan_slam.vpcf", PATTACH_ABSORIGIN, npc);
+    end);
+    Timers:CreateTimer(1, function()
+        local sunstrike = npc:GetAbilityByIndex(0);
+        npc:CastAbilityNoTarget(sunstrike, -1);
     end);
 end

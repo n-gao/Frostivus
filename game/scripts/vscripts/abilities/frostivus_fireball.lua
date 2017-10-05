@@ -17,10 +17,10 @@ function frostivus_fireball:OnSpellStart(args)
 	local particleName = "particles/units/heroes/hero_jakiro/jakiro_macropyre.vpcf";
     self.particle = ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN, dummy);
     local forward = caster:GetForwardVector();
-	ParticleManager:SetParticleControl(self.particle, 0, position - forward * self.radius);
+	ParticleManager:SetParticleControl(self.particle, 0, position - forward * self.radius/2);
 	ParticleManager:SetParticleControl(self.particle, 1, position);
     ParticleManager:SetParticleControl(self.particle, 2, Vector(self.duration, 0, 0));
-	ParticleManager:SetParticleControl(self.particle, 3, position + forward * self.radius);
+	ParticleManager:SetParticleControl(self.particle, 3, position + forward * self.radius/2);
 
     local damageTimer = Timers:CreateTimer(self.interval, function ()
         local targets = FindUnitsInRadius(self.teamNumber, 

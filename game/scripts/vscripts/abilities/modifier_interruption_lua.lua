@@ -34,7 +34,7 @@ function modifier_interruption_lua:OnCreated(kv)
         return;
     end
     self.player = hero.player;
-    self.cameraUnit = CreateUnitByName("frostivus_camera_helper", hero:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS);
+    self.cameraUnit = CreateUnitByName("frostivus_camera_helper", hero:GetAbsOrigin(), true, nil, nil, hero:GetTeamNumber());
     self.cameraUnit.player = self.player;
     PlayerResource:SetCameraTarget(self.player:GetPlayerId(), self.cameraUnit);
     if kv.duration >= 0 then

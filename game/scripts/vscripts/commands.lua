@@ -34,3 +34,7 @@ end
 function CommandEngine:roshan_demand(keys, params)
     Game.GetInstance():GetRoshan():DemandGifts();
 end
+
+function CommandEngine:roshan_strike(keys, params)
+    Game.GetInstance():GetRoshan():Sunstrike();
+end

@@ -1,17 +1,6 @@
 "DOTAAbilities"
 {
     //=================================================================================================================
-    // Roshan Demand Gifts
-    //=================================================================================================================
-    "frostivus_roshan_demand_gifts"
-    {
-    	// General
-    	//-------------------------------------------------------------------------------------------------------------
-    	"BaseClass"						"ability_lua"
-    	"ScriptFile"					"abilities/frostivus_roshan_demand_gifts"
-
-    }
-    //=================================================================================================================
     // Roshan Fireball
     //=================================================================================================================
     "frostivus_fireball"
@@ -37,7 +26,7 @@
 
     	// Time		
     	//-------------------------------------------------------------------------------------------------------------
-    	"AbilityCooldown"				"5"
+    	"AbilityCooldown"				"4"
 
     	// Cost
     	//-------------------------------------------------------------------------------------------------------------
@@ -63,7 +52,7 @@
     		"02"
     		{
     			"var_type"					"FIELD_INTEGER"
-    			"radius"    				"180"
+    			"radius"    				"220"
     		}			
     		"03"
     		{
@@ -71,5 +60,65 @@
     			"burn_interval"				"0.25"
     		}
     	}
+    }    //=================================================================================================================
+    // Roshan Demand Gifts
+    //=================================================================================================================
+    "frostivus_roshan_demand_gifts"
+    {
+    	// General
+    	//-------------------------------------------------------------------------------------------------------------
+    	"BaseClass"						"ability_lua"
+    	"ScriptFile"					"abilities/frostivus_roshan_demand_gifts"
+
     }
+    "frostivus_sunstrike"
+    {
+    	// General
+    	//-------------------------------------------------------------------------------------------------------------
+    	"BaseClass"				        "ability_lua"
+    	"ScriptFile"					"abilities/frostivus_sunstrike"
+    	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    	"MaxLevel"						"1"
+    	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+    	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+    	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_NOT_ILLUSION"
+    	"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+    	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+    	"AbilityTextureName"			"invoker_sun_strike"
+
+    	// Precache
+    	//-------------------------------------------------------------------------------------------------------------
+    	"precache"
+    	{
+    		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+    		"particle"		"particles/econ/items/invoker/invoker_apex/invoker_sun_strike_immortal1.vpcf"
+    		"particle"		"particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf"
+    	}
+
+    	// Stats
+    	//-------------------------------------------------------------------------------------------------------------
+    	"AbilityCastRange"				"0"
+    	"AbilityCastPoint"				"0"
+    	"AbilityCooldown"				"0"
+    	"AbilityManaCost"				"0"
+
+        "AbilityDamage"                 "400"
+		
+    	// Special
+    	//-------------------------------------------------------------------------------------------------------------
+    	"AbilitySpecial"
+    	{
+    		"01"
+    		{
+    			"var_type"				"FIELD_FLOAT"
+    			"delay"					"1.7"
+    		}
+    		"02"
+    		{
+    			"var_type"				"FIELD_INTEGER"
+    			"radius"		        "250"
+    		}
+    	}
+    }
+
 }
