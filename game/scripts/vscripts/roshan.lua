@@ -17,7 +17,7 @@ Roshan = Roshan or class({
 }, {}, Unit);
 
 function Roshan:OnThink()
-    if GameRules:GetGameTime() - lastGift > 15 then
+    if GameRules:GetGameTime() - self.lastGift > 15 then
         if math.random() > 0.8 then
             self:Sunstrike();
             self.lastGift = GameRules:GetGameTime();

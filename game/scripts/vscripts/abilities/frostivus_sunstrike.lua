@@ -15,7 +15,9 @@ function frostivus_sunstrike:OnSpellStart()
         local hero = player:GetHero();
         if hero and hero:IsAlive() then
             local target = hero:GetAbsOrigin();
-            local particle = ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN, caster);
+            local dummy = CreateUnitByName("frostivus_dummy", target, false, nil, nil, caster:GetTeamNumber());
+            dummy:EmitSound("Hero_Invoker.SunStrike.Charge");
+            local particle = ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN, dummy);
             ParticleManager:SetParticleControl(particle, 0, target);
 			ParticleManager:SetParticleControl(particle, 1, Vector(radius,0,0));
             Timers:CreateTimer(delay, function()
@@ -40,9 +42,13 @@ function frostivus_sunstrike:OnSpellStart()
                         ability = self
                     });
                 end
-                local endParticle = ParticleManager:CreateParticle(endParticlename, PATTACH_ABSORIGIN, caster);
+                local endParticle = ParticleManager:CreateParticle(endParticlename, PATTACH_ABSORIGIN, dummy);
                 ParticleManager:SetParticleControl(endParticle, 0, target);
 			    ParticleManager:SetParticleControl(endParticle, 1, Vector(radius,0,0));
+                dummy:EmitSound("Hero_Invoker.SunStrike.Ignite");
+                Timers:CreateTimer(1, function()
+                    dummy:ForceKill(false);
+                end);
             end);
         end
     end
