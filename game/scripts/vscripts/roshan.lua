@@ -115,7 +115,7 @@ function Roshan:DemandGifts()
         self:GetNpc():EmitSound("RoshanDT.Scream");
     end);
     Timers:CreateTimer(8, function()
-        Game.GetInstance():SpawnDragons(10);
+        Game.GetInstance():SpawnDragons(10, self:GetAbsOrigin());
     end);
 end
 

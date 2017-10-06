@@ -13,6 +13,7 @@ function Precache( context )
 	]]
     PrecacheUnitByNameSync("frostivus_greevil", context);
     PrecacheUnitByNameSync("frostivus_dragon", context);
+    PrecacheItemByNameSync("item_gift", context);
 end
 
 -- Create the game mode when we activate

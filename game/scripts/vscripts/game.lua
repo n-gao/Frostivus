@@ -88,7 +88,7 @@ end
 
 function Game:OnThinkRunning()
     if math.random() < 0.05 and #self:GetGreevils() < self:GetMaxGreevils() then
-        self:SpawnGreevils(1);
+        self:SpawnGreevils(1, self:GetRoshan():GetAbsOrigin());
     end
     if GameRules:GetGameTime() >= self:GetTimeLimit() then
         self:EndGameByTime();
@@ -127,9 +127,9 @@ function Game:GetRoshan()
     return self.roshan;
 end
 
-function Game:SpawnGreevils(amount)
+function Game:SpawnGreevils(amount, position)
     for i = 1, amount do
-        CreateUnitByName("frostivus_greevil", self:GetRoshan():GetNpc():GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS);
+        CreateUnitByName("frostivus_greevil", position, true, nil, nil, DOTA_TEAM_NEUTRALS);
     end
 end
 
@@ -150,9 +150,9 @@ function Game:GetGreevils()
     return result;
 end
 
-function Game:SpawnDragons(amount)
+function Game:SpawnDragons(amount, position)
     for i = 1, amount do
-        CreateUnitByName("frostivus_dragon", self:GetRoshan():GetNpc():GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS);
+        CreateUnitByName("frostivus_dragon", position, true, nil, nil, DOTA_TEAM_NEUTRALS);
     end
 end
 

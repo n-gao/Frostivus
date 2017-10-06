@@ -16,6 +16,11 @@
         "ItemKillable"						"1"
         "ItemPurchasable"					"0"
         "ItemSellable"						"0"
+
+        "precache"
+        {
+            "particle"  "particles/gift_counter.vpcf"
+        }
     }
 
 }
