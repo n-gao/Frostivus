@@ -3,7 +3,6 @@ require("utils");
 require("commands");
 
 Game = Game or class({
-    _gameState = GAMESTATE_PREPARATION,
     _gameTimer = nil,
     players = {},
     greevils = {},
@@ -183,7 +182,7 @@ function Game:GetDragons()
 end
 
 function Game:GetGiftBounty()
-    return shallowcopy(self.mapData.gift_bounty);
+    return ShallowCopy(self.mapData.gift_bounty);
 end
 
 function Game:GetMaxGreevils()
@@ -223,11 +222,11 @@ function Game:GetPlayersPerTeam()
 end
 
 function Game:GetWaypoints()
-    return shallowcopy(self.waypoints);
+    return ShallowCopy(self.waypoints);
 end
 
 function Game:GetWaypointNames()
-    return shallowcopy(self.mapData.waypoints);
+    return ShallowCopy(self.mapData.waypoints);
 end
 
 function Game:GetTeamPoints(team)
@@ -331,7 +330,7 @@ function Game:GetPlayer(playerId)
 end
 
 function Game:GetPlayers()
-    return shallowcopy(self.players);
+    return ShallowCopy(self.players);
 end
 
 function Game.GetInstance()

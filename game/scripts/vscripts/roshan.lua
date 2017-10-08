@@ -14,9 +14,14 @@ Roshan = Roshan or class({
             self:GetNpc():StartGesture(ACT_DOTA_IDLE);
         end);
     end
-}, {}, Unit);
+}, {
+}, Unit);
 
 function Roshan:OnThink()
+    if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        lastGift = GameRules:GetGameTime();
+        return 0.5;
+    end
     if GameRules:GetGameTime() - self.lastGift > 15 then
         if math.random() > 0.8 then
             self:Sunstrike();
@@ -88,15 +93,6 @@ function Roshan:ShowSpeechubble(text, params, duration, shout)
         params = params or {},
         shout = shout == true
     });
-end
-
-function AngleFromVector(vec)
-    vec = vec:Normalized();
-    local angle = math.acos(vec.x);
-    if (vec.y < 0) then
-        angle = -angle;
-    end
-    return angle/math.pi * 180;
 end
 
 function Roshan:DemandGifts()
