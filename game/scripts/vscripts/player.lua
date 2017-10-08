@@ -23,6 +23,10 @@ function Player:OnThink( ... )
     
 end
 
+function Player:GetPlayerEntity()
+    return PlayerResource:GetPlayer(self:GetPlayerId());
+end
+
 function Player:SetPlayerEntity(entity)
     self.playerEntity = entity;
     self.disconnected = entity ~= nil;

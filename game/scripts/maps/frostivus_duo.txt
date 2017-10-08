@@ -1,5 +1,7 @@
 "frostivus_duo"
 {
+    "team_count"            "5"
+    "players_per_team"      "2"
     "point_limit"           "30"
     "very_close_to_victory" "25"
     "close_to_victory"      "20"

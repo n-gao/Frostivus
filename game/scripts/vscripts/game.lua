@@ -25,6 +25,7 @@ Game = Game or class({
         ListenToGameEvent('player_disconnect', Dynamic_Wrap(Game, 'OnPlayerDisconnect'), self)
         ListenToGameEvent("npc_spawned", Dynamic_Wrap(Game, "OnNpcSpawned"), self);
         ListenToGameEvent("entity_killed", Dynamic_Wrap(Game, "OnNpcKilled"), self);
+        ListenToGameEvent("game_rules_state_change", Dynamic_Wrap(Game, "OnGameStateChanged"), self);
 
         if GameRules:IsCheatMode() then
             ListenToGameEvent("player_chat", Dynamic_Wrap(CommandEngine, "OnPlayerChat"), self.commandEngine);
@@ -116,6 +117,14 @@ function Game:EndGame(winner)
     GameRules:SetGameWinner(winner);
 end
 
+function Game:RandomHeroes()
+    for _, player in pairs(self.players) do
+        if not PlayerResource:HasSelectedHero(player:GetPlayerId()) then
+            player:GetPlayerEntity():MakeRandomHeroSelection();
+        end
+    end
+end
+
 function Game:SetRoshan(roshan)
     if not instanceof(roshan, Roshan) then
         error("The given value must be an instance of Roshan.");
@@ -205,6 +214,14 @@ function Game:GetCloseToVictoryLimit()
     return self.mapData.close_to_victory;
 end
 
+function Game:GetTeamCount()
+    return self.mapData.team_count;
+end
+
+function Game:GetPlayersPerTeam()
+    return self.mapData.players_per_team;
+end
+
 function Game:GetWaypoints()
     return shallowcopy(self.waypoints);
 end
@@ -273,6 +290,13 @@ function Game:OnNpcKilled(keys)
     end
     if instanceof(murderer.unit, Unit) then
         murderer.unit:OnKilled(victim);
+    end
+end
+
+function Game:OnGameStateChanged(keys)
+    local newState = GameRules:State_Get()
+    if newState == DOTA_GAMERULES_STATE_STRATEGY_TIME then
+        self:RandomHeroes()
     end
 end
 
