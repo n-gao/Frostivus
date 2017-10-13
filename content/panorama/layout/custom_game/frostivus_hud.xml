@@ -8,7 +8,7 @@
         <include src="file://{resources}/styles/custom_game/frostivus_hud.css" />
     </styles>
     <Panel hittest="false" class="FrostivusHudRoot">
-        <Panel hittest="false" id="FrostivusSpeechBubbleRoot">
+        <Panel hittest="false" id="FrostivusSpeechbubbleRoot">
              
         </Panel>
     </Panel>

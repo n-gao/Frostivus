@@ -98,7 +98,7 @@ end
 function Roshan:DemandGifts()
     local interruption = Interruption(10, Game.GetInstance():GetPlayers());
     Timers:CreateTimer(4, function ()
-        self:ShowSpeechubble("frostivus_roshan_more_gifts", {}, 6, true);
+        self:ShowSpeechubble("#1", { [1] = "frostivus_roshan_more_gifts" }, 6, true);
         local npc = self:GetNpc();
         npc:StartGesture(ACT_DOTA_CAST_ABILITY_1);
         local attachmentId = npc:ScriptLookupAttachment("attach_hitloc");
@@ -118,14 +118,14 @@ end
 function Roshan:Sunstrike()
     -- local interruption = Interruption(5, Game.GetInstance():GetPlayers());
     local npc = self:GetNpc();
-    self:ShowSpeechubble("frostivus_roshan_not_enough", {}, 3, true);
+    self:ShowSpeechubble("#1", { [1] = "frostivus_roshan_not_enough" }, 3, true);
     npc:StartGesture(ACT_DOTA_CAST_ABILITY_3);
     Timers:CreateTimer(0.5, function()
         npc:EmitSound("Roshan.Slam");
         local particle = ParticleManager:CreateParticle("particles/neutral_fx/roshan_slam.vpcf", PATTACH_ABSORIGIN, npc);
     end);
     Timers:CreateTimer(1, function()
-        local sunstrike = npc:GetAbilityByIndex(3);
+        local sunstrike = npc:GetAbilityByIndex(1);
         npc:CastAbilityNoTarget(sunstrike, -1);
     end);
 end

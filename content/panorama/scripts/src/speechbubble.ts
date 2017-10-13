@@ -48,11 +48,11 @@ function RefreshPosition(panel : Panel, data : Speechbubble) {
         x = Game.WorldToScreenX(pos[0] + offset[0], pos[1] + offset[1], pos[2] + offset[2]);
         y = Game.WorldToScreenY(pos[0] + offset[0], pos[1] + offset[1], pos[2] + offset[2]);
     }
-    y -= panel.contentheight;
-    x -= panel.contentwidth * 0.5;
+    // y -= panel.contentheight;
     var width = Game.GetScreenWidth();
     var height = Game.GetScreenHeight();
     var aspectCorrection = (width/height) / (16/9);
+    x -= panel.contentwidth * 0.25 * aspectCorrection;
     x *= aspectCorrection;
     y *= aspectCorrection;
     panel.style.marginLeft = x + "px";

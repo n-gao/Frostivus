@@ -34,6 +34,7 @@
 			_class = "C_OP_InterpolateRadius"
 			m_flEndTime = 7.0
 			m_flStartScale = 0.0
+			m_bEaseInAndOut = true
 		},
 	]
 	m_Initializers = 

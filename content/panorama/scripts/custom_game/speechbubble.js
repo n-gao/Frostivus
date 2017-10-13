@@ -1,9 +1,9 @@
 "use strict";
-function ShowSpeechBubble(data) {
+function ShowSpeechbubble(data) {
     $.Msg("[Speechbubble] Created with:");
     $.Msg(data);
-    var bubble = $.CreatePanel("Panel", $("#FrostivusSpeechBubbleRoot"), "Speechbubble");
-    bubble.BLoadLayout("file://{resources}/layout/custom_game/frostivus_speechbubble.xml", false, false);
+    var bubble = $.CreatePanel("Panel", $("#FrostivusSpeechbubbleRoot"), "Speechbubble");
+    bubble.BLoadLayout("file://{resources}/layout/custom_game/frostivus_Speechbubble.xml", false, false);
     var label = bubble.FindChildInLayoutFile("SpeechbubbleText");
     var text = FormatText(data.text, data.params);
     if (data.shout) {
@@ -46,11 +46,11 @@ function RefreshPosition(panel, data) {
         x = Game.WorldToScreenX(pos[0] + offset[0], pos[1] + offset[1], pos[2] + offset[2]);
         y = Game.WorldToScreenY(pos[0] + offset[0], pos[1] + offset[1], pos[2] + offset[2]);
     }
-    y -= panel.contentheight;
-    x -= panel.contentwidth * 0.5;
+    // y -= panel.contentheight;
     var width = Game.GetScreenWidth();
     var height = Game.GetScreenHeight();
     var aspectCorrection = (width / height) / (16 / 9);
+    x -= panel.contentwidth * 0.25 * aspectCorrection;
     x *= aspectCorrection;
     y *= aspectCorrection;
     panel.style.marginLeft = x + "px";
@@ -80,8 +80,8 @@ function FormatText(format, params) {
     return result;
 }
 (function () {
-    GameEvents.Subscribe("show_speechbubble", ShowSpeechBubble);
-    // ShowSpeechBubble({ 
+    GameEvents.Subscribe("show_Speechbubble", ShowSpeechbubble);
+    // ShowSpeechbubble({ 
     //     position : {x : 0, y : 0, z : 300},
     //     text : "this is a test 2",
     //     duration : 30000,
