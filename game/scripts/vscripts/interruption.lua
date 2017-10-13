@@ -9,7 +9,7 @@ if not Interruption then
             self.duration = duration;
             self.players = players;
             self:Start();
-            table.insert(interruptions, self);
+            table.insert(Interruption.interruptions, self);
         end,
     }, {
         instances = {}

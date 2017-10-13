@@ -30,6 +30,11 @@
 		{
 			_class = "C_OP_PositionLock"
 		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 7.0
+			m_flStartScale = 0.0
+		},
 	]
 	m_Initializers = 
 	[

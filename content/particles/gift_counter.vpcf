@@ -35,6 +35,21 @@
 		{
 			_class = "C_OP_PositionLock"
 		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 7.0
+			m_flStartScale = 0.0
+			m_bEaseInAndOut = true
+			m_nOpEndCapState = 0
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartTime = 3.0
+			m_flEndTime = 7.0
+			m_flEndScale = 0.0
+			m_bEaseInAndOut = true
+			m_nOpEndCapState = 1
+		},
 	]
 	m_Initializers = 
 	[
@@ -56,11 +71,11 @@
 			m_fLifetimeMax = 0.1
 		},
 		{
-			_class = "C_INIT_PositionOffset"
-		},
-		{
 			_class = "C_INIT_CreateWithinSphere"
 			m_vecDistanceBiasAbs = [ 0.0, 0.0, 1.0 ]
+		},
+		{
+			_class = "C_INIT_PositionOffset"
 		},
 	]
 	m_Emitters = 
