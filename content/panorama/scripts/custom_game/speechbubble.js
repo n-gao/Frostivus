@@ -47,6 +47,12 @@ function RefreshPosition(panel, data) {
         y = Game.WorldToScreenY(pos[0] + offset[0], pos[1] + offset[1], pos[2] + offset[2]);
     }
     // y -= panel.contentheight;
+    if (x == -1 && y == -1) {
+        panel.style.visibility = "collapse";
+    }
+    else {
+        panel.style.visibility = "visible";
+    }
     var width = Game.GetScreenWidth();
     var height = Game.GetScreenHeight();
     var aspectCorrection = (width / height) / (16 / 9);
@@ -55,12 +61,6 @@ function RefreshPosition(panel, data) {
     y *= aspectCorrection;
     panel.style.marginLeft = x + "px";
     panel.style.marginTop = y + "px";
-    if (x == -1 && y == -1) {
-        panel.style.visibility = "collapse";
-    }
-    else {
-        panel.style.visibility = "visible";
-    }
     $.Schedule(0.01, function () {
         RefreshPosition(panel, data);
     });

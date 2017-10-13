@@ -125,7 +125,8 @@ function Roshan:Sunstrike()
         local particle = ParticleManager:CreateParticle("particles/neutral_fx/roshan_slam.vpcf", PATTACH_ABSORIGIN, npc);
     end);
     Timers:CreateTimer(1, function()
-        local sunstrike = npc:GetAbilityByIndex(1);
+        local sunstrike = npc:GetAbilityByIndex(0);
+        print(sunstrike)
         npc:CastAbilityNoTarget(sunstrike, -1);
     end);
 end
