@@ -1,7 +1,7 @@
 require("unit");
 require("interruption");
 
-LinkLuaModifier("modifier_roshan_invulnerable_lua", "abilities/modifier_roshan_invulnerable_lua.lua", LUA_MODIFIER_MOTION_NONE);
+LinkLuaModifier("modifier_roshan_invulnerable_lua", "modifiers/modifier_roshan_invulnerable_lua.lua", LUA_MODIFIER_MOTION_NONE);
 
 Roshan = Roshan or class({
     lastGift = 0,

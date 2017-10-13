@@ -30,7 +30,7 @@ Game = Game or class({
             ListenToGameEvent("player_chat", Dynamic_Wrap(CommandEngine, "OnPlayerChat"), self.commandEngine);
         end
 
-        LinkLuaModifier("modifier_interruption_lua", "abilities/modifier_interruption_lua.lua", LUA_MODIFIER_MOTION_NONE);
+        LinkLuaModifier("modifier_interruption_lua", "modifiers/modifier_interruption_lua.lua", LUA_MODIFIER_MOTION_NONE);
 
         self:LoadMapData();
 

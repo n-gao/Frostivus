@@ -38,3 +38,10 @@ end
 function CommandEngine:roshan_strike(keys, params)
     Game.GetInstance():GetRoshan():Sunstrike();
 end
+
+function CommandEngine:drop_gift(keys, params)
+    local player = Game.GetInstance():GetPlayer(keys.playerid);
+    if player:HasHero() then
+        GiftQuest.DropGift(player:GetHero():GetAbsOrigin());
+    end
+end

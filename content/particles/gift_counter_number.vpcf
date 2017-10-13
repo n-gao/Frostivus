@@ -58,13 +58,19 @@
 		},
 		{
 			_class = "C_INIT_PositionOffset"
-			m_OffsetMin = [ 0.0, 0.0, 50.0 ]
-			m_OffsetMax = [ 0.0, 0.0, 50.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 100.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 100.0 ]
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
 			m_fLifetimeMin = 0.1
 			m_fLifetimeMax = 0.1
+		},
+		{
+			_class = "C_INIT_GlobalScale"
+			m_flScale = 1.7
+			m_bScalePosition = false
+			m_bScaleVelocity = false
 		},
 	]
 	m_Emitters = 

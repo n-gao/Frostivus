@@ -31,11 +31,11 @@ function modifier_item_gift_lua:RefreshParticle()
         ParticleManager:DestroyParticle(self.particle, true);
     end
     local target = self:GetParent();
-    self.particle = ParticleManager:CreateParticle("particles/gift_counter.vpcf", PATTACH_ABSORIGIN_FOLLOW, target);
-    ParticleManager:SetParticleControlEnt(self.particle, 0, target, PATTACH_OVERHEAD_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true);
+    self.particle = ParticleManager:CreateParticle("particles/gift_counter.vpcf", PATTACH_POINT_FOLLOW, target);
     ParticleManager:SetParticleControl(self.particle, 1, Vector(0, stackCount, 0));
     ParticleManager:SetParticleControl(self.particle, 2, Vector(0, #tostring(stackCount), 0));
     ParticleManager:SetParticleControl(self.particle, 3, Vector(0, 170, 0));
+    ParticleManager:SetParticleControlEnt(self.particle, 0, target, PATTACH_OVERHEAD_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true);
 end
 
 function modifier_item_gift_lua:IsDebuff()
