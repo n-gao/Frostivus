@@ -31,7 +31,7 @@ function Roshan:OnThink()
     return 0.5;
 end
 
-function Roshan:GiveGifts(player)
+function Roshan:GiveGifts(player, amount)
     if not instanceof(player, Player) then
         error("[Roshan] the parameter muss be an instance of Player.");
     end
@@ -39,8 +39,11 @@ function Roshan:GiveGifts(player)
     if count == 0 then
         return;
     end
-    player:RemoveGifts();
-    local quest = GiftQuest(count);
+    if type(amount) ~= "number" or amount > count then
+        amount = count;
+    end
+    player:DecreaseGiftCount(amount, false);
+    local quest = GiftQuest(amount);
     player:FullfillQuest(quest);
     self:LookAt(player:GetHero():GetAbsOrigin());
     self:ThankPlayer(player);
@@ -126,7 +129,6 @@ function Roshan:Sunstrike()
     end);
     Timers:CreateTimer(1, function()
         local sunstrike = npc:GetAbilityByIndex(0);
-        print(sunstrike)
         npc:CastAbilityNoTarget(sunstrike, -1);
     end);
 end

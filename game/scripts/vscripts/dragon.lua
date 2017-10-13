@@ -6,6 +6,7 @@ if not Dragon then
         constructor = function(self, npc)
             Greevil.constructor(self, npc);
             self.fireballAbility = npc:GetAbilityByIndex(0);
+            self.fireballAbility:StartCooldown(4 + math.random() * 3);
             self:SetBounty(3);
         end
     }, {

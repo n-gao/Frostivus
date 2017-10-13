@@ -181,6 +181,10 @@ function Game:GetDragons()
     return result;
 end
 
+function Game:GetGiftTakeDelay()
+    return self.mapData.gift_take_delay;
+end
+
 function Game:GetGiftBounty()
     return ShallowCopy(self.mapData.gift_bounty);
 end
@@ -314,7 +318,8 @@ function Game:ItemAddedFilter(keys)
     if itemName == "item_gift" then
         if unit:IsRealHero() then
             -- Apply gift modifier
-            unit:AddNewModifier(unit, item, "modifier_item_gift_lua", {});
+            unit.player:IncreaseGiftCount(item);
+            -- unit:AddNewModifier(unit, item, "modifier_item_gift_lua", {});
         else
             -- Create a new gift
             GiftQuest.DropGift(unit:GetAbsOrigin());

@@ -33,6 +33,7 @@ function modifier_interruption_lua:OnCreated(kv)
         self:Destroy();
         return;
     end
+    hero:Stop();
     self.player = hero.player;
     self.cameraUnit = CreateUnitByName("frostivus_camera_helper", hero:GetAbsOrigin(), true, nil, nil, hero:GetTeamNumber());
     self.cameraUnit.player = self.player;

@@ -68,6 +68,33 @@ function Player:GetGiftCount()
     return self:GetHero():GetModifierStackCount("modifier_item_gift_lua", self:GetHero());
 end
 
+function Player:IncreaseGiftCount(item)
+    local hero = self:GetHero();
+    hero:AddNewModifier(hero, item, "modifier_item_gift_lua", {});
+end
+
+function Player:DecreaseGiftCount(amount, drop)
+    local count = self:GetGiftCount();
+    local hero = self:GetHero();
+    if type(amount) ~= "number" then
+        amount = 1;
+    end
+    if type(drop) ~= "boolean" then
+        drop = false;
+    end
+    if count > amount then
+        hero:SetModifierStackCount("modifier_item_gift_lua", hero, count - amount);
+        if drop then
+            GiftQuest.DropGifts(hero:GetAbsOrigin(), count);
+        end
+    elseif count <= amount and count > 0 then
+        hero:RemoveModifierByName("modifier_item_gift_lua");
+        if drop then
+            GiftQuest.DropGifts(hero:GetAbsOrigin(), amount);
+        end
+    end
+end
+
 function Player:GetTeamPoints()
     return Game.GetInstance():GetTeamPoints(self:GetTeamNumber());
 end

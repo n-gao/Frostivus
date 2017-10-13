@@ -15,13 +15,11 @@ function modifier_item_gift_lua:OnCreated()
     if not IsServer() then return end
     self.owner = self:GetAbility():GetCaster();
     self:SetStackCount(1);
-    self:RefreshParticle();
 end
 
 function modifier_item_gift_lua:OnRefresh()
     if not IsServer() then return end
     self:SetStackCount(self:GetStackCount() + 1);
-    self:RefreshParticle();
 end
 
 function modifier_item_gift_lua:RefreshParticle()
@@ -75,4 +73,9 @@ function modifier_item_gift_lua:OnRemoved()
     if self.particle then
         ParticleManager:DestroyParticle(self.particle, true);
     end
+end
+
+function modifier_item_gift_lua:OnStackCountChanged(stackCount)
+    if not IsServer() then return end
+    self:RefreshParticle();
 end
