@@ -1,12 +1,12 @@
 "AddonInfo"
 {
-    "MaxPlayers"    "10"
+    "MaxPlayers"    "15"
     "TeamCount"     "5"
     "maps"          "frostivus_duo"
     "IsPlayable"     "1"
     "frostivus_duo"
     {
-        "MaxPlayers"    "10"
+        "MaxPlayers"    "15"
         "TeamCount"     "5"
     }
 }

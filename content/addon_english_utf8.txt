@@ -1,0 +1,53 @@
+﻿"lang"
+{
+	"Language"		"English"
+	"Tokens"
+	{	
+		// ******************** ADDON ********************
+		"addon_game_name"																  "Overthrowish Diretide"
+        "DOTA_GoodGuys"																	  "Teal Tiger"
+        "DOTA_BadGuys"																	  "Yellow Monkey"
+        "DOTA_Custom1"																	  "Pink Dragon"
+        "DOTA_Custom2"																	  "Orange Dog"
+        "DOTA_Custom3"																	  "Blue Rooster"
+        "DOTA_Custom4"																	  "Green Ram"
+        "DOTA_Custom5"																      "Brown Rat"
+        "DOTA_Custom6"																	  "Cyan Boar"
+        "DOTA_Custom7"																	  "Olive Snake"
+        "DOTA_Custom8"																	  "Purple Horse"
+		
+		// ******************** ROSHAN ********************
+        "frostivus_roshan_thank_you"    												  "Thank you"
+        "frostivus_roshan_more_gifts"   												  "I Want More Gifts!"
+		"frostivus_roshan_not_enough"													  "I Don't Have Enough Gifts"
+	
+		// ******************** ABILITIES ********************
+		"DOTA_Tooltip_ability_frostivus_fireball"                                         "Fireball"
+		"DOTA_Tooltip_ability_frostivus_fireball_Description"                             "Dragon hurls a fire blast on the ground, igniting the area. Enemies caught in the fire will take damage per second."
+		"DOTA_Tooltip_ability_frostivus_fireball_duration"                                "DURATION:"
+		"DOTA_Tooltip_ability_frostivus_fireball_radius"                                  "RADIUS:"
+		"DOTA_Tooltip_ability_frostivus_fireball_burn_interval"                           "BURN INTERVAL:"
+		
+		"DOTA_Tooltip_ability_frostivus_roshan_demand_gifts"                              "Roshan Demand Gifts"
+		"DOTA_Tooltip_ability_frostivus_roshan_demand_gifts_Description"                  "Roshan Wants More Gifts!"
+
+		"DOTA_Tooltip_ability_frostivus_sunstrike"                                        "Sunstrike"
+		"DOTA_Tooltip_ability_frostivus_sunstrike_Description"                            "Roshan sends a catastrophic ray of fierce energy from the sun at any targeted location, incinerating all enemies standing beneath it once it reaches the earth."
+		"DOTA_Tooltip_ability_frostivus_sunstrike_delay"                                  "DELAY:"
+		"DOTA_Tooltip_ability_frostivus_sunstrike_radius"                                 "RADIUS:"
+		
+		// ******************** ITEMS ********************
+		"DOTA_Tooltip_ability_item_gift"                                                  "Gift"
+		"DOTA_Tooltip_ability_item_gift_Description"                                      "Give This Gift to Roshan to Earn Points, Gold and XP!"
+		"DOTA_Tooltip_modifier_item_gift_lua"			 								  "Gift"
+		"DOTA_Tooltip_modifier_item_gift_lua_Description" 								  "Give This Gift to Roshan to Earn Points, Gold and XP!"
+		
+		// ******************** UNITS ********************
+		"frostivus_camera_helper"                                                         "Frostivus Camera Helper"
+		"frostivus_dragon"                                                                "Dragon"
+		"frostivus_dummy"                                                                 "Dummy"
+		"frostivus_greevil"                                                               "Greevil"
+		"frostivus_roshan"                                                                "Roshan"
+		"npc_dota_creature_gnoll_assassin"                                                "Gnoll Assassin"
+	}
+}
