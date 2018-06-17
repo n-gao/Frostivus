@@ -4,7 +4,6 @@ function OnEnterRoshan(trigger)
         local game = Game.GetInstance();
         local roshan = game:GetRoshan();
         local delay = game:GetGiftTakeDelay();
-        GiftQuest.DropGift(hero:GetAbsOrigin());
         local lastGift = GameRules:GetGameTime();
         Timers:CreateTimer(0, function()
             if not trigger.caller:IsTouching(hero) then

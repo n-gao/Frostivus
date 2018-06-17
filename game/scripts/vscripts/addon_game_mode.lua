@@ -32,8 +32,10 @@ end
 -- Create the game mode when we activate
 function Activate()
     local teamCount = Game.GetInstance():GetTeamCount();
-    local playersPerTeam = Game.GetInstance():GetPlayersPerTeam();
+    local playersPerTeam = 3;
     for i = 1, teamCount do
         GameRules:SetCustomGameTeamMaxPlayers(teamIds[i], playersPerTeam);
     end
+  GameRules:SetShowcaseTime(0)
+  GameRules:SetStrategyTime(0)
 end
